@@ -15,9 +15,9 @@ class CreateContenusTable extends Migration
     {
         Schema::create('contenus', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('image');
-            $table->longText('content');
+            $table->string('title')->nullable();
+            $table->string('image')->nullable();
+            $table->longText('content')->nullable();
             $table->unsignedBigInteger('article_id');
             $table->foreign('article_id')->references('id')->on('articles');
             $table->timestamps();
