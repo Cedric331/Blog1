@@ -2012,7 +2012,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['article'],
+  mounted: function mounted() {
+    console.log(this.article.contenu);
+  }
+});
 
 /***/ }),
 
@@ -4011,7 +4043,63 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("h1", { staticClass: "mt-5 text-center" }, [
+      _vm._v("Article du moment")
+    ]),
+    _vm._v(" "),
+    _c("hr", { staticClass: "my-3" }),
+    _vm._v(" "),
+    _c("div", { staticClass: "container mt-5" }, [
+      _c(
+        "section",
+        { staticClass: "text-justify" },
+        [
+          _c("h1", [_vm._v(_vm._s(_vm.article.title))]),
+          _vm._v(" "),
+          _vm.article.image
+            ? _c("figure", { staticClass: "figure" }, [
+                _c("img", {
+                  staticClass: "figure-img img-fluid z-depth-1",
+                  attrs: {
+                    src: "storage/images/" + _vm.article.image,
+                    alt: _vm.article.title
+                  }
+                })
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.article.contenu, function(contenu) {
+            return _c("div", { key: contenu.id }, [
+              contenu.title
+                ? _c("h3", [_vm._v(_vm._s(contenu.title))])
+                : _vm._e(),
+              _vm._v(" "),
+              contenu.image
+                ? _c("figure", { staticClass: "figure" }, [
+                    _c("img", {
+                      staticClass:
+                        "imageArticle figure-img img-fluid z-depth-1",
+                      attrs: {
+                        src: "storage/images/" + contenu.image,
+                        alt: contenu.title
+                      }
+                    })
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              contenu.content
+                ? _c("p", [_vm._v(_vm._s(contenu.content))])
+                : _vm._e()
+            ])
+          })
+        ],
+        2
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {

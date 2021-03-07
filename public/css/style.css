@@ -5,7 +5,14 @@ body {
 	grid-template-rows: auto 1fr auto;
 }
 
+
+.imageArticle{
+   max-height: 300px;
+}
+
+
 /* Home */
+
 #fontHome{
    background-image: url('/storage/images/home.jpg'); 
    background-repeat: no-repeat; 

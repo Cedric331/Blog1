@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Article;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-
-
     /**
      * Show the application dashboard.
      *
@@ -16,6 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Home');
+        return Inertia::render('Home',[
+           'article' => Article::where('top', true)->first()
+        ]);
     }
 }
