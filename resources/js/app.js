@@ -1,13 +1,10 @@
-require('./bootstrap');
+
 
 import { App, plugin } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 import { InertiaProgress } from '@inertiajs/progress'
 
 window.Vue = require('vue');
-
-Vue.component('example', require('./components/Example.vue').default);
-
 
 
 const app = new Vue({
