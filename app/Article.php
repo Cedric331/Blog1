@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
 
-   protected $with = ['contenu','categorie'];
+   protected $with = ['contenu','categorie', 'tag'];
       /**
      * The attributes that are mass assignable.
      *
@@ -23,5 +23,9 @@ class Article extends Model
 
    public function categorie(){
       return $this->belongsTo(Categorie::class);
+   }
+
+   public function tag(){
+      return $this->belongsToMany(Tag::class);
    }
 }

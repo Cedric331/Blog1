@@ -5,6 +5,35 @@ body {
 	grid-template-rows: auto 1fr auto;
 }
 
+/* Menu */
+
+@media (min-width: 992px) {
+   .animate {
+     animation-duration: 0.6s;
+   }
+ }
+ 
+ @keyframes slideIn {
+   to{
+     transform:translateY(0rem);
+     opacity: 1;
+   }
+   from {
+     transform: translateY(10rem);
+     opacity: 0;
+   }
+ }
+ 
+ .slideIn {
+   animation-name: slideIn;
+ }
+
+.dropdown-item:hover{
+   background-color: black;
+   color:white;
+}
+  
+
 
 /* Logo */
 

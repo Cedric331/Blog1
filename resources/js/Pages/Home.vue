@@ -19,22 +19,24 @@
 
               <section class="text-justify">
                  <h1>{{article.title}}</h1>
-
                     <figure class="figure" v-if="article.image">
                       <img :src="'storage/images/'+article.image" class="figure-img img-fluid z-depth-1"
                         :alt="article.title">
                     </figure>
-               
+
                <div v-for="contenu in article.contenu" :key="contenu.id">
-                  <h3 v-if="contenu.title">{{ contenu.title }}</h3>
+                  <h3 class="text-primary lead" v-if="contenu.title">{{ contenu.title }}</h3>
 
                   <figure class="figure" v-if="contenu.image">
                       <img :src="'storage/images/'+contenu.image" class="imageArticle figure-img img-fluid z-depth-1"
                         :alt="contenu.title">
                   </figure>
 
-                    <p v-if="contenu.content">{{ contenu.content }}</p>
+                    <p class="text-primary lead" v-if="contenu.content">{{ contenu.content }}</p>
                </div>
+               <p>
+                  Tags: <small v-for="(tag,index) in article.tag" :key="tag.id" class="d-inline">#{{tag.name}}<em v-if="index+1 != article.tag.length"> - </em></small>
+               </p>
               </section>
       </div>
 

@@ -2039,6 +2039,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['article'],
   mounted: function mounted() {
@@ -4074,7 +4076,9 @@ var render = function() {
           _vm._l(_vm.article.contenu, function(contenu) {
             return _c("div", { key: contenu.id }, [
               contenu.title
-                ? _c("h3", [_vm._v(_vm._s(contenu.title))])
+                ? _c("h3", { staticClass: "text-primary lead" }, [
+                    _vm._v(_vm._s(contenu.title))
+                  ])
                 : _vm._e(),
               _vm._v(" "),
               contenu.image
@@ -4091,10 +4095,28 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               contenu.content
-                ? _c("p", [_vm._v(_vm._s(contenu.content))])
+                ? _c("p", { staticClass: "text-primary lead" }, [
+                    _vm._v(_vm._s(contenu.content))
+                  ])
                 : _vm._e()
             ])
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
+              _vm._v("\r\n                  Tags: "),
+              _vm._l(_vm.article.tag, function(tag, index) {
+                return _c("small", { key: tag.id, staticClass: "d-inline" }, [
+                  _vm._v("#" + _vm._s(tag.name)),
+                  index + 1 != _vm.article.tag.length
+                    ? _c("em", [_vm._v(" - ")])
+                    : _vm._e()
+                ])
+              })
+            ],
+            2
+          )
         ],
         2
       )
