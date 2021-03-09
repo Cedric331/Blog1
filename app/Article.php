@@ -2,12 +2,17 @@
 
 namespace App;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
 
    protected $with = ['contenu','categorie', 'tag'];
+
+   protected $casts = [
+      'created_at' => 'datetime:d-m-Y',
+  ];
       /**
      * The attributes that are mass assignable.
      *
@@ -28,4 +33,5 @@ class Article extends Model
    public function tag(){
       return $this->belongsToMany(Tag::class);
    }
+
 }
