@@ -22,3 +22,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/articles', 'ArticleController@index')->name('article-index');
 Route::get('/articles/{slug}', 'ArticleController@show')->name('article-show');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
