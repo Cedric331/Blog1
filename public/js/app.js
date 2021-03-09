@@ -4013,9 +4013,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      commentEditFormVisible: Number,
+      commentEditVisible: String,
       count: 1,
       commentaire: '',
       commentaires: this.article.commentaires
@@ -4035,9 +4055,29 @@ __webpack_require__.r(__webpack_exports__);
     },
     commentCount: function commentCount() {
       this.count++;
+    },
+    formEditComment: function formEditComment(commentaire) {
+      if (commentaire.id == this.commentEditFormVisible) {
+        this.commentEditFormVisible = Number;
+      } else {
+        this.commentEditFormVisible = commentaire.id;
+        this.commentEditVisible = commentaire.commentaire;
+      }
+    },
+    editComment: function editComment() {
+      var _this2 = this;
+
+      axios.patch('/commentaire/edit', {
+        id: this.commentEditFormVisible,
+        commentaire: this.commentEditVisible
+      }).then(function (res) {
+        _this2.commentaires = res.data;
+        _this2.commentEditVisible = String;
+        _this2.commentEditFormVisible = Number;
+      })["catch"]();
     }
   },
-  props: ['article']
+  props: ['article', 'user']
 });
 
 /***/ }),
@@ -6399,7 +6439,7 @@ var render = function() {
         _c(
           "p",
           [
-            _vm._v("\n                  Tags: "),
+            _vm._v("\n            Tags: "),
             _vm._l(_vm.article.tag, function(tag, index) {
               return _c("small", { key: tag.id, staticClass: "d-inline" }, [
                 _vm._v("#" + _vm._s(tag.name)),
@@ -6434,7 +6474,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "media d-block d-md-flex mt-3 shadow p-3 mb-2 bg-white rounded"
+                        "media d-block d-md-flex mt-3 shadow p-1 mb-2 bg-white rounded"
                     },
                     [
                       _c(
@@ -6444,25 +6484,119 @@ var render = function() {
                             "media-body text-center text-md-left ml-md-3 ml-0"
                         },
                         [
+                          _c("em", [
+                            _vm._v(
+                              "Posté le: " +
+                                _vm._s(commentaire.created_at) +
+                                " "
+                            ),
+                            commentaire.created_at != commentaire.updated_at
+                              ? _c("strong", [_vm._v("- modifié")])
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
                           _c("p", { staticClass: "font-weight-bold my-0" }, [
                             _vm._v(
-                              "\n               " +
+                              "\n                            " +
                                 _vm._s(commentaire.user.name) +
-                                ":\n              "
+                                ":\n                        "
                             )
                           ]),
-                          _vm._v(
-                            "\n              " +
-                              _vm._s(commentaire.commentaire) +
-                              "\n            "
-                          )
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(commentaire.commentaire) +
+                                "\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm.commentEditFormVisible === commentaire.id
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "form-group shadow-lg p-3 mb-5 bg-light rounded"
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "commentaire" } },
+                                    [_vm._v("Modifier le commentaire: ")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.commentEditVisible,
+                                        expression: "commentEditVisible"
+                                      }
+                                    ],
+                                    staticClass:
+                                      "form-control bg-white border border-dark",
+                                    staticStyle: { "line-height": "21px" },
+                                    attrs: {
+                                      id: "commentaire",
+                                      rows: "3",
+                                      spellcheck: "false",
+                                      "data-gramm": "false"
+                                    },
+                                    domProps: { value: _vm.commentEditVisible },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.commentEditVisible =
+                                          $event.target.value
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "d-flex justify-content-end"
+                                    },
+                                    [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-primary mt-3",
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.editComment($event)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Envoyer")]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            : _vm._e()
                         ]
                       ),
-                      _vm._v(
-                        "\n            Posté le: " +
-                          _vm._s(commentaire.created_at) +
-                          "\n            "
-                      )
+                      _vm._v(" "),
+                      _vm.user.id == commentaire.user.id
+                        ? _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-info rounded mr-1 mt-1 btn-sm",
+                              on: {
+                                click: function($event) {
+                                  return _vm.formEditComment(commentaire)
+                                }
+                              }
+                            },
+                            [_vm._v("Editer")]
+                          )
+                        : _vm._e()
                     ]
                   )
                 : _vm._e()
@@ -6477,7 +6611,11 @@ var render = function() {
                     staticClass: "btn btn-outline-primary btn-sm m-auto d-flex",
                     on: { click: _vm.commentCount }
                   },
-                  [_vm._v("Afficher plus de commentaire")]
+                  [
+                    _vm._v(
+                      "Afficher plus de\n                    commentaire\n                 "
+                    )
+                  ]
                 )
               ])
             : _vm._e()
@@ -6527,7 +6665,12 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-primary mt-3",
-              on: { click: _vm.storeComment }
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.storeComment($event)
+                }
+              }
             },
             [_vm._v("Envoyer")]
           )

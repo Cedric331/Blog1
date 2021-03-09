@@ -26,4 +26,15 @@ class CommentaireController extends Controller
 
          return response()->json($commentaires, 200);
     }
+
+    public function edit(Request $request)
+    {
+         $commentaire = Commentaire::find($request->id);
+         $commentaire->commentaire = $request->commentaire;
+         $commentaire->save();
+
+         $commentaires = Commentaire::where('article_id', $commentaire->article_id)->get();
+
+         return response()->json($commentaires, 200);
+    }
 }
