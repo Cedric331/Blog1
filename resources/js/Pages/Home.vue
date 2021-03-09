@@ -24,10 +24,10 @@
                         :alt="article.title">
                     </figure>
 
-               <div v-for="contenu in article.contenu" :key="contenu.id">
+               <div class="container-fluid text-center" v-for="contenu in article.contenu" :key="contenu.id">
                   <h3 class="text-primary lead" v-if="contenu.title">{{ contenu.title }}</h3>
 
-                  <figure class="figure" v-if="contenu.image">
+                  <figure class="rounded d-block" v-if="contenu.image">
                       <img :src="'storage/images/'+contenu.image" class="imageArticle figure-img img-fluid z-depth-1"
                         :alt="contenu.title">
                   </figure>
@@ -49,10 +49,6 @@
 
 export default {
   props:['article'],
-
-  mounted() {
-     console.log(this.article.contenu)
-  },
 
 }
 </script>

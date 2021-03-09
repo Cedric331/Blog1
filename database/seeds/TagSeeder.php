@@ -19,5 +19,21 @@ class TagSeeder extends Seeder
       $tag = new Tag;
       $tag->name = "forêt";
       $tag->save();
+
+      $tag = new Tag;
+      $tag->name = "hiver";
+      $tag->save();
+
+      $tag = new Tag;
+      $tag->name = "paysage";
+      $tag->save();
+
+      $tag = new Tag;
+      $tag->name = "ville";
+      $tag->save();
+
+      $tag = new Tag;
+      $tag->name = "portrait";
+      $tag->save();
     }
 }

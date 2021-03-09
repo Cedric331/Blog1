@@ -2042,10 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['article'],
-  mounted: function mounted() {
-    console.log(this.article.contenu);
-  }
+  props: ['article']
 });
 
 /***/ }),
@@ -4074,32 +4071,36 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _vm._l(_vm.article.contenu, function(contenu) {
-            return _c("div", { key: contenu.id }, [
-              contenu.title
-                ? _c("h3", { staticClass: "text-primary lead" }, [
-                    _vm._v(_vm._s(contenu.title))
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              contenu.image
-                ? _c("figure", { staticClass: "figure" }, [
-                    _c("img", {
-                      staticClass:
-                        "imageArticle figure-img img-fluid z-depth-1",
-                      attrs: {
-                        src: "storage/images/" + contenu.image,
-                        alt: contenu.title
-                      }
-                    })
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              contenu.content
-                ? _c("p", { staticClass: "text-primary lead" }, [
-                    _vm._v(_vm._s(contenu.content))
-                  ])
-                : _vm._e()
-            ])
+            return _c(
+              "div",
+              { key: contenu.id, staticClass: "container-fluid text-center" },
+              [
+                contenu.title
+                  ? _c("h3", { staticClass: "text-primary lead" }, [
+                      _vm._v(_vm._s(contenu.title))
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                contenu.image
+                  ? _c("figure", { staticClass: "rounded d-block" }, [
+                      _c("img", {
+                        staticClass:
+                          "imageArticle figure-img img-fluid z-depth-1",
+                        attrs: {
+                          src: "storage/images/" + contenu.image,
+                          alt: contenu.title
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                contenu.content
+                  ? _c("p", { staticClass: "text-primary lead" }, [
+                      _vm._v(_vm._s(contenu.content))
+                    ])
+                  : _vm._e()
+              ]
+            )
           }),
           _vm._v(" "),
           _c(

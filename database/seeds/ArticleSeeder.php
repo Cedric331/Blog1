@@ -27,5 +27,11 @@ class ArticleSeeder extends Seeder
         Une fois rentré au camp de base (mon bureau), j’ai ouvert mes fichiers RAW et là je me suis dit : si tu veux tirer quelque chose de cette série, il faut tout passer en noir et blanc. Aussitôt dit aussitôt fait ! Dans ce nouvel article vous verrez donc des arbres gelés et couverts de neige passés en N&B. Mais aussi une superbe vidéo qui mélange forêts en hiver et ski acrobatique et enfin… des cigognes dans la neige !";
         $contenu->article_id = $article->id;
         $contenu->save();
+
+        $contenu = new Contenu;
+        $contenu->title = "L'hiver en Forêt";
+        $contenu->image = "hiver.jpg";
+        $contenu->article_id = $article->id;
+        $contenu->save();
     }
 }
