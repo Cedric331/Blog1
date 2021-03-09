@@ -14,7 +14,7 @@
                 <div v-for="article in articles" :key="article.id" class="my-2 col-lg-4 col-md-6 mb-4 shadow-lg p-3">
                     <div class="view overlay rounded z-depth-2 mb-4">
                         <img class="img-fluid" :src="'storage/images/'+article.image"
-                            alt="Sample image">
+                            :alt="article.title">
                         <a>
                             <div class="mask rgba-white-slight"></div>
                         </a>

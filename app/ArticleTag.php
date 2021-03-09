@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TagArticle extends Model
+class ArticleTag extends Model
 {
-   /**
+      /**
      * The attributes that are mass assignable.
      *
      * @var array

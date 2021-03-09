@@ -14,4 +14,12 @@ class ArticleController extends Controller
          'articles' => Article::all()
       ]);
    }
+
+   public function show($slug)
+   {
+
+      return Inertia::render('ViewArticle',[
+         'article' => Article::where('slug', $slug)->first()
+      ]);
+   }
 }
