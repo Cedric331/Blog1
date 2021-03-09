@@ -25,7 +25,7 @@
                            Tags: <small v-for="(tag,index) in article.tag" :key="tag.id" class="d-inline">#{{tag.name}}<em v-if="index+1 != article.tag.length"> - </em></small>
                         </p>
                     <a :href="'articles/'+article.slug" class="mb-4 btn btn-info btn-rounded btn-md">Lire l'article</a>
-                     <p class="font-weight-bold">J'aime(3) - Commentaire(4)</p>
+                     <p class="font-weight-bold">J'aime(3) - Commentaire({{ article.commentaires.length }})</p>
                 </div>
 
             </div>

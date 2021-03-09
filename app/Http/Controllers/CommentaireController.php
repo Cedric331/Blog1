@@ -15,6 +15,9 @@ class CommentaireController extends Controller
 
     public function store(Request $request)
     {
+       $request->validate([
+          'commentaire' => ['required', 'string', 'max:255']
+       ]);
 
          $commentaire = new Commentaire;
          $commentaire->commentaire = $request->commentaire;
@@ -29,12 +32,22 @@ class CommentaireController extends Controller
 
     public function edit(Request $request)
     {
+      $request->validate([
+         'commentaire' => ['required', 'string', 'max:255']
+      ]);
          $commentaire = Commentaire::find($request->id);
-         $commentaire->commentaire = $request->commentaire;
-         $commentaire->save();
 
-         $commentaires = Commentaire::where('article_id', $commentaire->article_id)->get();
+         if (Auth::user()->can('update', $commentaire)) {
+            $commentaire->commentaire = $request->commentaire;
+            $commentaire->save();
 
-         return response()->json($commentaires, 200);
+            $commentaires = Commentaire::where('article_id', $commentaire->article_id)->get();
+
+            return response()->json($commentaires, 200);
+
+          } 
+          else {
+            return response()->json(null, 401);
+          }
     }
 }

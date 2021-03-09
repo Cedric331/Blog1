@@ -4031,14 +4031,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       commentEditFormVisible: Number,
       commentEditVisible: String,
-      count: 1,
+      count: 5,
       commentaire: '',
-      commentaires: this.article.commentaires
+      commentaires: this.article.commentaires,
+      errors: null,
+      errorsEdit: null
     };
   },
   methods: {
@@ -4049,12 +4067,16 @@ __webpack_require__.r(__webpack_exports__);
         commentaire: this.commentaire,
         article: this.article.id
       }).then(function (res) {
+        _this.errors = null;
+        _this.errorsEdit = null;
         _this.commentaire = '';
         _this.commentaires = res.data;
-      })["catch"]();
+      })["catch"](function (err) {
+        _this.errors = err.response.data.errors;
+      });
     },
     commentCount: function commentCount() {
-      this.count++;
+      this.count += 5;
     },
     formEditComment: function formEditComment(commentaire) {
       if (commentaire.id == this.commentEditFormVisible) {
@@ -4071,10 +4093,14 @@ __webpack_require__.r(__webpack_exports__);
         id: this.commentEditFormVisible,
         commentaire: this.commentEditVisible
       }).then(function (res) {
+        _this2.errorsEdit = null;
+        _this2.errors = null;
         _this2.commentaires = res.data;
         _this2.commentEditVisible = String;
         _this2.commentEditFormVisible = Number;
-      })["catch"]();
+      })["catch"](function (err) {
+        _this2.errorsEdit = err.response.data.errors;
+      });
     }
   },
   props: ['article', 'user']
@@ -6161,7 +6187,11 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("p", { staticClass: "font-weight-bold" }, [
-                _vm._v("J'aime(3) - Commentaire(4)")
+                _vm._v(
+                  "J'aime(3) - Commentaire(" +
+                    _vm._s(article.commentaires.length) +
+                    ")"
+                )
               ])
             ]
           )
@@ -6503,13 +6533,17 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(commentaire.commentaire) +
-                                "\n                        "
-                            )
-                          ]),
+                          _c(
+                            "p",
+                            { staticStyle: { "white-space": "pre-line" } },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(commentaire.commentaire) +
+                                  "\n                        "
+                              )
+                            ]
+                          ),
                           _vm._v(" "),
                           _vm.commentEditFormVisible === commentaire.id
                             ? _c(
@@ -6519,6 +6553,37 @@ var render = function() {
                                     "form-group shadow-lg p-3 mb-5 bg-light rounded"
                                 },
                                 [
+                                  _vm.errorsEdit
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "alert alert-danger" },
+                                        _vm._l(_vm.errorsEdit, function(err) {
+                                          return _c(
+                                            "div",
+                                            { key: err.message },
+                                            _vm._l(err, function(error) {
+                                              return _c(
+                                                "p",
+                                                {
+                                                  key: error,
+                                                  staticClass: "text-sm"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                        " +
+                                                      _vm._s(error) +
+                                                      "\n                                    "
+                                                  )
+                                                ]
+                                              )
+                                            }),
+                                            0
+                                          )
+                                        }),
+                                        0
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
                                   _c(
                                     "label",
                                     { attrs: { for: "commentaire" } },
@@ -6582,7 +6647,7 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm.user.id == commentaire.user.id
+                      _vm.user && _vm.user.id == commentaire.user.id
                         ? _c(
                             "button",
                             {
@@ -6613,7 +6678,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "Afficher plus de\n                    commentaire\n                 "
+                      "Afficher plus de\n                    commentaire\n                "
                     )
                   ]
                 )
@@ -6624,59 +6689,85 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "form-group shadow-lg p-3 mb-5 bg-light rounded" },
-      [
-        _c("label", { attrs: { for: "commentaire" } }, [
-          _vm._v("Poster un commentaire: ")
-        ]),
-        _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.commentaire,
-              expression: "commentaire"
-            }
-          ],
-          staticClass: "form-control bg-white border border-dark",
-          staticStyle: { "line-height": "21px" },
-          attrs: {
-            id: "commentaire",
-            rows: "3",
-            spellcheck: "false",
-            "data-gramm": "false"
-          },
-          domProps: { value: _vm.commentaire },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.commentaire = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "d-flex justify-content-end" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary mt-3",
+    _vm.user
+      ? _c(
+          "div",
+          { staticClass: "form-group shadow-lg p-3 mb-5 bg-light rounded" },
+          [
+            _vm.errors
+              ? _c(
+                  "div",
+                  { staticClass: "alert alert-danger" },
+                  _vm._l(_vm.errors, function(err) {
+                    return _c(
+                      "div",
+                      { key: err.message },
+                      _vm._l(err, function(error) {
+                        return _c("p", { key: error, staticClass: "text-sm" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(error) +
+                              "\n                "
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  }),
+                  0
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "commentaire" } }, [
+              _vm._v("Poster un commentaire: ")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.commentaire,
+                  expression: "commentaire"
+                }
+              ],
+              staticClass: "form-control bg-white border border-dark",
+              staticStyle: { "line-height": "21px" },
+              attrs: {
+                id: "commentaire",
+                rows: "3",
+                spellcheck: "false",
+                "data-gramm": "false"
+              },
+              domProps: { value: _vm.commentaire },
               on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.storeComment($event)
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.commentaire = $event.target.value
                 }
               }
-            },
-            [_vm._v("Envoyer")]
-          )
-        ])
-      ]
-    )
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "d-flex justify-content-end" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary mt-3",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.storeComment($event)
+                    }
+                  }
+                },
+                [_vm._v("Envoyer")]
+              )
+            ])
+          ]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
