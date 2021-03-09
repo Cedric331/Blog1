@@ -17,7 +17,6 @@ class ArticleController extends Controller
 
    public function show($slug)
    {
-
       return Inertia::render('ViewArticle',[
          'article' => Article::where('slug', $slug)->first()
       ]);

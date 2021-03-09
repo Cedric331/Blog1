@@ -5,7 +5,7 @@ import Vue from 'vue'
 import { InertiaProgress } from '@inertiajs/progress'
 
 window.Vue = require('vue');
-
+window.axios = require('axios');
 
 const app = new Vue({
    el: '#app',

@@ -23,6 +23,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/articles', 'ArticleController@index')->name('article-index');
 Route::get('/articles/{slug}', 'ArticleController@show')->name('article-show');
 
+Route::post('/commentaire', 'CommentaireController@store')->name('commentaire-store')->middleware('auth');
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
