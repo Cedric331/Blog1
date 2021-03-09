@@ -2031,6 +2031,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      categorie: undefined
+    };
+  },
   props: ['articles']
 });
 
@@ -4096,8 +4101,14 @@ var render = function() {
   return _c("div", { staticClass: "container mt-5" }, [
     _c("section", { staticClass: "dark-grey-text text-center" }, [
       _c("h2", { staticClass: "font-weight-bold mb-4 pb-2" }, [
-        _vm._v("Recent posts")
+        _vm._v("Articles")
       ]),
+      _vm._v(" "),
+      _vm.categorie != undefined
+        ? _c("h3", { staticClass: "font-weight-bold mb-4 pb-2" }, [
+            _vm._v("Catégorie: " + _vm._s(_vm.categorie))
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("p", { staticClass: "text-center mx-auto w-responsive mb-5" }, [
         _vm._v(
@@ -4111,7 +4122,10 @@ var render = function() {
         _vm._l(_vm.articles, function(article) {
           return _c(
             "div",
-            { key: article.id, staticClass: "col-lg-4 col-md-6 mb-4" },
+            {
+              key: article.id,
+              staticClass: "my-2 col-lg-4 col-md-6 mb-4 shadow-lg p-3"
+            },
             [
               _c(
                 "div",
@@ -4133,28 +4147,43 @@ var render = function() {
                 _c("strong", [_vm._v(_vm._s(article.title))])
               ]),
               _vm._v(" "),
-              _c("p", [
-                _vm._v("by "),
-                _c("a", { staticClass: "font-weight-bold" }, [
-                  _vm._v("Billy Forester")
-                ]),
-                _vm._v(", " + _vm._s(article.created_at))
+              _c("p", { staticClass: "d-inline font-weight-bold" }, [
+                _vm._v("par Natalie SMITH, " + _vm._s(article.created_at))
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "dark-grey-text" }, [
-                _vm._v(
-                  "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut\n                    fugit, sed\n                    quia consequuntur magni dolores eos qui ratione."
-                )
-              ]),
+              _c(
+                "p",
+                { staticClass: "mt-2" },
+                [
+                  _vm._v("\n                       Tags: "),
+                  _vm._l(article.tag, function(tag, index) {
+                    return _c(
+                      "small",
+                      { key: tag.id, staticClass: "d-inline" },
+                      [
+                        _vm._v("#" + _vm._s(tag.name)),
+                        index + 1 != article.tag.length
+                          ? _c("em", [_vm._v(" - ")])
+                          : _vm._e()
+                      ]
+                    )
+                  })
+                ],
+                2
+              ),
               _vm._v(" "),
               _c(
                 "a",
                 {
-                  staticClass: "btn btn-info btn-rounded btn-md",
+                  staticClass: "mb-4 btn btn-info btn-rounded btn-md",
                   attrs: { href: "articles/" + article.slug }
                 },
                 [_vm._v("Lire l'article")]
-              )
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-weight-bold" }, [
+                _vm._v("J'aime(3) - Commentaire(4)")
+              ])
             ]
           )
         }),

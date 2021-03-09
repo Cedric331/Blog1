@@ -12,7 +12,7 @@ class Article extends Model
 
    protected $casts = [
       'created_at' => 'datetime:d-m-Y',
-  ];
+   ];
       /**
      * The attributes that are mass assignable.
      *
