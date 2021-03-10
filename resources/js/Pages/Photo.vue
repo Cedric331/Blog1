@@ -28,10 +28,12 @@
   <section>
     <div class="row">
 
-      <div v-for="photo in allPhoto" :key="photo.id" class="zoom col-lg-4 col-md-6 mb-4">
+      <div v-for="photo in allPhoto" :key="photo.id" class=" col-lg-4 col-md-6 mb-4">
         <div class="z-depth-1 rounded mb-2">
+           <a data-toggle="modal" @click="size(photo)" data-target="#modalYT">
             <img :src="'/storage/photos/'+photo.photo"
               class="img-fluid rounded-bottom imageSize" :alt="photo.title">
+              </a>
             <div class="mask rgba-stylish-strong">
             </div>
         </div>
@@ -43,6 +45,25 @@
       
     </div>
   </section>
+
+
+
+<div v-if="modalPhoto" class="modal fade" id="modalYT" tabindex="-1" role="dialog" aria-labelledby="Photo en grand"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body mb-0 p-0">
+        <div>
+         <a data-dismiss="modal">
+          <img :src="'/storage/photos/'+modalPhoto"  
+              class="img-fluid rounded-bottom">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 </template>
 
@@ -53,10 +74,14 @@ export default {
             return {
                 file: '',
                 titre: '',
-                'allPhoto': this.photos
+                allPhoto: this.photos,
+                modalPhoto: ''
             };
         },
   methods: {
+     size(photo){
+        this.modalPhoto = photo.photo
+     },
       onFileChange(e) {
             this.file = e.target.files[0];
             },

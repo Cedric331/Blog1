@@ -3842,13 +3842,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      categorie: undefined
-    };
-  },
   props: ['articles']
 });
 
@@ -4061,15 +4055,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       file: '',
       titre: '',
-      'allPhoto': this.photos
+      allPhoto: this.photos,
+      modalPhoto: ''
     };
   },
   methods: {
+    size: function size(photo) {
+      this.modalPhoto = photo.photo;
+    },
     onFileChange: function onFileChange(e) {
       this.file = e.target.files[0];
     },
@@ -6998,12 +7017,6 @@ var render = function() {
         _vm._v("Articles")
       ]),
       _vm._v(" "),
-      _vm.categorie != undefined
-        ? _c("h3", { staticClass: "font-weight-bold mb-4 pb-2" }, [
-            _vm._v("Catégorie: " + _vm._s(_vm.categorie))
-          ])
-        : _vm._e(),
-      _vm._v(" "),
       _c("p", { staticClass: "text-center mx-auto w-responsive mb-5" }, [
         _vm._v(
           "Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n            Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam\n            eum porro a pariatur veniam."
@@ -7433,16 +7446,32 @@ var render = function() {
         _vm._l(_vm.allPhoto, function(photo) {
           return _c(
             "div",
-            { key: photo.id, staticClass: "zoom col-lg-4 col-md-6 mb-4" },
+            { key: photo.id, staticClass: " col-lg-4 col-md-6 mb-4" },
             [
               _c("div", { staticClass: "z-depth-1 rounded mb-2" }, [
-                _c("img", {
-                  staticClass: "img-fluid rounded-bottom imageSize",
-                  attrs: {
-                    src: "/storage/photos/" + photo.photo,
-                    alt: photo.title
-                  }
-                }),
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      "data-toggle": "modal",
+                      "data-target": "#modalYT"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.size(photo)
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "img-fluid rounded-bottom imageSize",
+                      attrs: {
+                        src: "/storage/photos/" + photo.photo,
+                        alt: photo.title
+                      }
+                    })
+                  ]
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "mask rgba-stylish-strong" })
               ]),
@@ -7457,7 +7486,46 @@ var render = function() {
         }),
         0
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _vm.modalPhoto
+      ? _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "modalYT",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "Photo en grand",
+              "aria-hidden": "true"
+            }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "modal-dialog modal-lg",
+                attrs: { role: "document" }
+              },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-body mb-0 p-0" }, [
+                    _c("div", [
+                      _c("a", { attrs: { "data-dismiss": "modal" } }, [
+                        _c("img", {
+                          staticClass: "img-fluid rounded-bottom",
+                          attrs: { src: "/storage/photos/" + _vm.modalPhoto }
+                        })
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = [

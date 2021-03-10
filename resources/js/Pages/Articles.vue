@@ -4,7 +4,6 @@
         <section class="dark-grey-text text-center">
 
             <h2 class="font-weight-bold mb-4 pb-2">Articles</h2>
-            <h3 v-if="categorie != undefined" class="font-weight-bold mb-4 pb-2">Catégorie: {{categorie}}</h3>
             <p class="text-center mx-auto w-responsive mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam
                 eum porro a pariatur veniam.</p>
@@ -36,11 +35,6 @@
 
 <script>
     export default {
-  data () {
-    return {
-       categorie: undefined
-    }
-  },
   props: ['articles'],
 
     }
