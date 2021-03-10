@@ -47,17 +47,23 @@ class CommentaireController extends Controller
 
           } 
           else {
-            return response()->json(null, 401);
+            return response()->json('Action non autorisée', 401);
           }
     }
 
     public function delete($id)
     {
       $commentaire = Commentaire::find($id);
+
+      if (Auth::user()->can('delete', $commentaire)) {
       $article = $commentaire->article;
       $commentaire->delete();
       $commentaires = Commentaire::where('article_id', $article->id)->get();
 
       return response()->json($commentaires, 200);
+      } 
+      else {
+         return response()->json('Action non autorisée', 401);
+      }
     }
 }
