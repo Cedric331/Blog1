@@ -50,4 +50,14 @@ class CommentaireController extends Controller
             return response()->json(null, 401);
           }
     }
+
+    public function delete($id)
+    {
+      $commentaire = Commentaire::find($id);
+      $article = $commentaire->article;
+      $commentaire->delete();
+      $commentaires = Commentaire::where('article_id', $article->id)->get();
+
+      return response()->json($commentaires, 200);
+    }
 }

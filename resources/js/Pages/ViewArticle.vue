@@ -38,14 +38,10 @@
                         <div class="media-body text-center text-md-left ml-md-3 ml-0">
                             <em>Posté le: {{ commentaire.created_at }} <strong
                                     v-if="commentaire.created_at != commentaire.updated_at">- modifié</strong></em>
-                            <p class="font-weight-bold my-0">
-                                {{ commentaire.user.name }}:
-                            </p>
                             <p style="white-space: pre-line;">
-                                {{ commentaire.commentaire }}
+                                {{ commentaire.user.name }}: {{ commentaire.commentaire }}
                             </p>
-
-                            <div v-if="commentEditFormVisible === commentaire.id"
+                           <div v-if="commentEditFormVisible === commentaire.id"
                                 class="form-group shadow-lg p-3 mb-5 bg-light rounded">
                                 <div v-if="errorsEdit" class="alert alert-danger">
                                     <div v-for="err in errorsEdit" :key="err.message">
@@ -64,10 +60,22 @@
                             </div>
 
                         </div>
-                        <button v-if="user && user.id == commentaire.user.id" @click="formEditComment(commentaire)"
-                            class="btn btn-info rounded mr-1 mt-1 btn-sm">Editer</button>
+
+                        <ul v-if="user && user.id == commentaire.user.id">
+                           <li class="nav-item dropdown" >
+                              <a class="nav-link" data-toggle="dropdown" href="#" role="button"
+                                  aria-haspopup="true" aria-expanded="false"><i class="fas fa-caret-down"></i></a>
+                              <div class="dropdown-menu">
+                                 <a type="button" @click="formEditComment(commentaire)"
+                                          class="dropdown-item rounded">Modifier</a>
+                                 <a type="button" @click="deleteComment(commentaire.id)"
+                                          class="dropdown-item rounded">Supprimer</a>
+                              </div>
+                          </li>
+                        </ul>
                     </div>
                 </div>
+
                 <div class="mt-5" v-if="count<commentaires.length">
                     <button class="btn btn-outline-primary btn-sm m-auto d-flex" @click="commentCount">Afficher plus de
                         commentaire
@@ -148,6 +156,17 @@
                     this.commentEditFormVisible = Number
                 }).catch(err => {
                     this.errorsEdit = err.response.data.errors
+                })
+            },
+            deleteComment(id) {
+                axios.delete('/commentaire/delete/'+id
+                ).then(res => {
+                    this.errorsEdit = null
+                    this.errors = null
+                    this.commentaires = res.data
+                    this.commentEditVisible = String
+                    this.commentEditFormVisible = Number
+                }).catch(err => {
                 })
             },
         },

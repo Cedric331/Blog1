@@ -4047,6 +4047,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4101,6 +4109,17 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         _this2.errorsEdit = err.response.data.errors;
       });
+    },
+    deleteComment: function deleteComment(id) {
+      var _this3 = this;
+
+      axios["delete"]('/commentaire/delete/' + id).then(function (res) {
+        _this3.errorsEdit = null;
+        _this3.errors = null;
+        _this3.commentaires = res.data;
+        _this3.commentEditVisible = String;
+        _this3.commentEditFormVisible = Number;
+      })["catch"](function (err) {});
     }
   },
   props: ['article', 'user']
@@ -6525,20 +6544,14 @@ var render = function() {
                               : _vm._e()
                           ]),
                           _vm._v(" "),
-                          _c("p", { staticClass: "font-weight-bold my-0" }, [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(commentaire.user.name) +
-                                ":\n                        "
-                            )
-                          ]),
-                          _vm._v(" "),
                           _c(
                             "p",
                             { staticStyle: { "white-space": "pre-line" } },
                             [
                               _vm._v(
                                 "\n                            " +
+                                  _vm._s(commentaire.user.name) +
+                                  ": " +
                                   _vm._s(commentaire.commentaire) +
                                   "\n                        "
                               )
@@ -6648,19 +6661,41 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _vm.user && _vm.user.id == commentaire.user.id
-                        ? _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-info rounded mr-1 mt-1 btn-sm",
-                              on: {
-                                click: function($event) {
-                                  return _vm.formEditComment(commentaire)
-                                }
-                              }
-                            },
-                            [_vm._v("Editer")]
-                          )
+                        ? _c("ul", [
+                            _c("li", { staticClass: "nav-item dropdown" }, [
+                              _vm._m(0, true),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "dropdown-menu" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "dropdown-item rounded",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.formEditComment(commentaire)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Modifier")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "dropdown-item rounded",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteComment(commentaire.id)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Supprimer")]
+                                )
+                              ])
+                            ])
+                          ])
                         : _vm._e()
                     ]
                   )
@@ -6770,7 +6805,27 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "nav-link",
+        attrs: {
+          "data-toggle": "dropdown",
+          href: "#",
+          role: "button",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("i", { staticClass: "fas fa-caret-down" })]
+    )
+  }
+]
 render._withStripped = true
 
 

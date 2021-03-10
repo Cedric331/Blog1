@@ -33,6 +33,10 @@ body {
    color:white;
 }
   
+ul{
+   list-style-type: none;
+   
+}
 
 
 /* Logo */

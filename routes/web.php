@@ -25,6 +25,7 @@ Route::get('/articles/{slug}', 'ArticleController@show')->name('article-show');
 
 Route::post('/commentaire', 'CommentaireController@store')->name('commentaire-store')->middleware('auth');
 Route::patch('/commentaire/edit', 'CommentaireController@edit')->name('commentaire-edit')->middleware('auth');
+Route::delete('/commentaire/delete/{id}', 'CommentaireController@delete')->name('commentaire-delete')->middleware('auth');
 
 
 Route::group(['prefix' => 'admin'], function () {
