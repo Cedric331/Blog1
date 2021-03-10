@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
 
-   protected $with = ['contenu','categorie', 'tag', 'commentaires'];
+   protected $with = ['contenu','categorie', 'tag', 'commentaires', 'likes'];
 
    protected $casts = [
       'created_at' => 'datetime:d-m-Y',
@@ -36,6 +36,10 @@ class Article extends Model
 
    public function commentaires(){
       return $this->hasMany(Commentaire::class);
+   }
+
+   public function likes(){
+      return $this->hasMany(Like::class);
    }
 
 }

@@ -27,6 +27,8 @@ Route::post('/commentaire', 'CommentaireController@store')->name('commentaire-st
 Route::patch('/commentaire/edit', 'CommentaireController@edit')->name('commentaire-edit')->middleware('auth');
 Route::delete('/commentaire/delete/{id}', 'CommentaireController@delete')->name('commentaire-delete')->middleware('auth');
 
+Route::post('/like/article', 'LikeController@store')->name('like-post')->middleware('auth');
+Route::post('/dislike/article', 'LikeController@delete')->name('like-delete')->middleware('auth');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

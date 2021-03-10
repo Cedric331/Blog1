@@ -23,15 +23,17 @@
                         v-if="index+1 != article.tag.length"> - </em></small>
             </p>
         </section>
-
-
         <hr>
 
         <div class="container my-3 py-5 px-md-5 z-depth-1">
 
             <section class="text-center text-lg-left dark-grey-text">
 
-                <div class="text-center font-weight-bold mb-5"><span>({{commentaires.length}}) </span>Commentaires</div>
+                <div class="text-center font-weight-bold mb-5">
+                   <span>({{commentaires.length}}) </span>
+                   Commentaires - <like class="d-inline" :article="article" :user="user"></like>
+               </div>
+                     
 
                 <div v-for="(commentaire, index) in commentaires" :key="commentaire.id">
                     <div v-if="count > index" class="media d-block d-md-flex mt-3 shadow p-1 mb-2 bg-white rounded">
@@ -107,7 +109,11 @@
 
 </template>
 <script>
+  import Like from './LikeArticle'
     export default {
+       components: {
+          Like
+       },
         data() {
             return {
                 commentEditFormVisible: Number,
@@ -121,7 +127,10 @@
         },
         methods: {
             storeComment() {
-                axios.post('/commentaire', {
+               if (!this.user) {
+                  window.location = '/login'
+               } else {
+                 axios.post('/commentaire', {
                     commentaire: this.commentaire,
                     article: this.article.id
                 }).then(res => {
@@ -132,17 +141,23 @@
                 }).catch(err => {
                     this.errors = err.response.data.errors
                 })
+               }
+
             },
             commentCount() {
                 this.count += 5;
             },
             formEditComment(commentaire) {
+               if (!this.user) {
+                  window.location = '/login'
+               } else {
                 if (commentaire.id == this.commentEditFormVisible) {
                     this.commentEditFormVisible = Number
                 } else {
                     this.commentEditFormVisible = commentaire.id
                     this.commentEditVisible = commentaire.commentaire
                 }
+               }
             },
             editComment() {
                 axios.patch('/commentaire/edit', {
