@@ -1,9 +1,9 @@
 <template>
    <div>
-      <button v-if="show" class="btn btn-info btn-sm" @click="like">
+      <button v-if="show" class="btn btn-info rounded btn-sm" @click="like">
          J'aime ({{ likes.length }})
       </button>
-      <button v-else class="btn btn-danger btn-sm" @click="dislike">
+      <button v-else class="btn btn-danger rounded btn-sm" @click="dislike">
          Je n'aime plus ({{ likes.length }})
       </button>
    </div>
@@ -46,7 +46,6 @@ export default {
       if (element.user_id == this.user.id) {
              this.show = false
           }
- 
    });
    }
 }

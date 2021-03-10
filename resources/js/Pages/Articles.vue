@@ -13,7 +13,7 @@
 
                 <div v-for="article in articles" :key="article.id" class="my-2 col-lg-4 col-md-6 mb-4 shadow-lg p-3">
                     <div class="view overlay rounded z-depth-2 mb-4">
-                        <img class="img-fluid" :src="'storage/images/'+article.image"
+                        <img class="img-fluid" :src="'/storage/images/'+article.image"
                             :alt="article.title">
                         <a>
                             <div class="mask rgba-white-slight"></div>
@@ -24,8 +24,8 @@
                         <p class="mt-2">
                            Tags: <small v-for="(tag,index) in article.tag" :key="tag.id" class="d-inline">#{{tag.name}}<em v-if="index+1 != article.tag.length"> - </em></small>
                         </p>
-                    <a :href="'articles/'+article.slug" class="mb-4 btn btn-info btn-rounded btn-md">Lire l'article</a>
-                     <p class="font-weight-bold">J'aime(3) - Commentaire({{ article.commentaires.length }})</p>
+                    <a :href="'/articles/'+article.slug" class="mb-4 btn btn-info btn-rounded btn-md">Lire l'article</a>
+                     <p class="font-weight-bold">J'aime({{ article.likes.length }}) - Commentaire({{ article.commentaires.length }})</p>
                 </div>
 
             </div>

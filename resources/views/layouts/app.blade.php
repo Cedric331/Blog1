@@ -39,14 +39,14 @@
                      <a class="nav-link" href="{{ route('article-index') }}">Articles</a>
                  </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Photos</a>
+                        <a class="nav-link" href="{{ route('photo-index') }}">Photos</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                             aria-haspopup="true" aria-expanded="false">Catégories</a>
                         <div class="dropdown-menu animate slideIn">
                            @foreach (allCategories() as $categorie)
-                            <a class="dropdown-item text-center font-weight-bold" href="#">{{ $categorie->title }}</a>
+                            <a class="dropdown-item text-center font-weight-bold" href="{{ route('article-categorie', ['title' => $categorie->title]) }}">{{ $categorie->title }}</a>
                            @endforeach
                         </div>
                     </li>
