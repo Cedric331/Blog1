@@ -29,8 +29,7 @@
           <div class="tab-pane fade in show active" id="panel100" role="tabpanel">
 
             <div class="view rounded z-depth-1-half mx-4">
-              <img src="https://mdbootstrap.com/img/Photos/Others/Intros/intro3.jpg" alt="Display of a full page intro page with call to action buttons"
-                class="img-fluid">
+               <information :user="user"></information>
             </div>
 
           </div>
@@ -64,8 +63,11 @@
 
 
 <script>
+import information from './AccountInformation'
 export default {
   props: ['user'],
-   
+   components:{
+      information
+   }
 }
 </script>

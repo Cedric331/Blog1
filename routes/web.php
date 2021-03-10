@@ -36,6 +36,7 @@ Route::post('/photo/store', 'PhotoController@store')->name('photo-store');
 
 Route::group(['middleware' => 'auth'], function () {
    Route::get('/account', 'AccountController@index')->name('account-index');
+   Route::post('/account/update', 'AccountController@update')->name('account-update');
 });
 
 Route::group(['prefix' => 'admin'], function () {

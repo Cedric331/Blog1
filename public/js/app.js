@@ -3807,6 +3807,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AccountInformation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AccountInformation */ "./resources/js/Pages/AccountInformation.vue");
 //
 //
 //
@@ -3847,6 +3848,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['user'],
+  components: {
+    information: _AccountInformation__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/AccountInformation.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/AccountInformation.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -3873,27 +3917,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    save: function save() {
+      var _this = this;
+
+      this.errors = null;
+      axios.post('/account/update', {
+        name: this.name,
+        email: this.email
+      }).then(function (res) {
+        _this.email = res.data.user.email;
+        _this.name = res.data.user.name;
+      })["catch"](function (err) {
+        _this.errors = err.response.data.errors;
+      });
+    }
+  },
+  data: function data() {
+    return {
+      email: this.user.email,
+      name: this.user.name,
+      errors: null
+    };
+  },
   props: ['user']
 });
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/AccountInformation.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/AccountInformation.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -7109,7 +7157,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container my-5 px-5 pt-5 pb-1 z-depth-1" }, [
+    _c("section", { staticClass: "text-center" }, [
+      _c("h2", { staticClass: "font-weight-bold mb-5" }, [
+        _vm._v("Mon Compte")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mb-5" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "tab-content" }, [
+            _c(
+              "div",
+              {
+                staticClass: "tab-pane fade in show active",
+                attrs: { id: "panel100", role: "tabpanel" }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "view rounded z-depth-1-half mx-4" },
+                  [_c("information", { attrs: { user: _vm.user } })],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -7117,148 +7199,90 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
-      { staticClass: "container my-5 px-5 pt-5 pb-1 z-depth-1" },
+      "ul",
+      { staticClass: "nav md-pills nav-justified pills-rounded mb-4 mt-2" },
       [
-        _c("section", { staticClass: "text-center" }, [
-          _c("h2", { staticClass: "font-weight-bold mb-5" }, [
-            _vm._v("Mon Compte")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row mb-5" }, [
-            _c("div", { staticClass: "col-12" }, [
-              _c(
-                "ul",
-                {
-                  staticClass:
-                    "nav md-pills nav-justified pills-rounded mb-4 mt-2"
-                },
-                [
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link mt-2 btn btn-primary",
-                        attrs: {
-                          "data-toggle": "tab",
-                          href: "#panel100",
-                          role: "tab"
-                        }
-                      },
-                      [_vm._v("Mes Informations")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link mt-2 btn btn-primary",
-                        attrs: {
-                          "data-toggle": "tab",
-                          href: "#panel101",
-                          role: "tab"
-                        }
-                      },
-                      [_vm._v("Mes commentaires")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link mt-2 btn btn-primary",
-                        attrs: {
-                          "data-toggle": "tab",
-                          href: "#panel102",
-                          role: "tab"
-                        }
-                      },
-                      [_vm._v("Supprimer mon compte")]
-                    )
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "tab-content" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "tab-pane fade in show active",
-                    attrs: { id: "panel100", role: "tabpanel" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "view rounded z-depth-1-half mx-4" },
-                      [
-                        _c("img", {
-                          staticClass: "img-fluid",
-                          attrs: {
-                            src:
-                              "https://mdbootstrap.com/img/Photos/Others/Intros/intro3.jpg",
-                            alt:
-                              "Display of a full page intro page with call to action buttons"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "tab-pane fade",
-                    attrs: { id: "panel101", role: "tabpanel" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "view rounded z-depth-1-half mx-4" },
-                      [
-                        _c("img", {
-                          staticClass: "img-fluid",
-                          attrs: {
-                            src:
-                              "https://mdbootstrap.com/img/Photos/Others/Intros/intro1a.jpg",
-                            alt:
-                              "Display of a full page intro page with call to action buttons"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "tab-pane fade",
-                    attrs: { id: "panel102", role: "tabpanel" }
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "view rounded z-depth-1-half mx-4" },
-                      [
-                        _c("img", {
-                          staticClass: "img-fluid",
-                          attrs: {
-                            src:
-                              "https://mdbootstrap.com/img/Photos/Others/Intros/intro4a.jpg",
-                            alt:
-                              "Display of a full page intro page with call to action buttons"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              ])
-            ])
-          ])
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link mt-2 btn btn-primary",
+              attrs: { "data-toggle": "tab", href: "#panel100", role: "tab" }
+            },
+            [_vm._v("Mes Informations")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link mt-2 btn btn-primary",
+              attrs: { "data-toggle": "tab", href: "#panel101", role: "tab" }
+            },
+            [_vm._v("Mes commentaires")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link mt-2 btn btn-primary",
+              attrs: { "data-toggle": "tab", href: "#panel102", role: "tab" }
+            },
+            [_vm._v("Supprimer mon compte")]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "tab-pane fade",
+        attrs: { id: "panel101", role: "tabpanel" }
+      },
+      [
+        _c("div", { staticClass: "view rounded z-depth-1-half mx-4" }, [
+          _c("img", {
+            staticClass: "img-fluid",
+            attrs: {
+              src:
+                "https://mdbootstrap.com/img/Photos/Others/Intros/intro1a.jpg",
+              alt:
+                "Display of a full page intro page with call to action buttons"
+            }
+          })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "tab-pane fade",
+        attrs: { id: "panel102", role: "tabpanel" }
+      },
+      [
+        _c("div", { staticClass: "view rounded z-depth-1-half mx-4" }, [
+          _c("img", {
+            staticClass: "img-fluid",
+            attrs: {
+              src:
+                "https://mdbootstrap.com/img/Photos/Others/Intros/intro4a.jpg",
+              alt:
+                "Display of a full page intro page with call to action buttons"
+            }
+          })
         ])
       ]
     )
@@ -7285,7 +7309,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "border border-light p-5" }, [
+    _c("p", { staticClass: "h4 mb-4 text-center" }, [
+      _vm._v("Mes Informations")
+    ]),
+    _vm._v(" "),
+    _vm.errors
+      ? _c(
+          "div",
+          { staticClass: "alert alert-danger" },
+          _vm._l(_vm.errors, function(err) {
+            return _c(
+              "div",
+              { key: err.message },
+              _vm._l(err, function(error) {
+                return _c("p", { key: error, staticClass: "text-sm" }, [
+                  _vm._v(
+                    "\r\n                        " +
+                      _vm._s(error) +
+                      "\r\n                    "
+                  )
+                ])
+              }),
+              0
+            )
+          }),
+          0
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("label", { attrs: { for: "name" } }, [_vm._v("Nom")]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.name,
+          expression: "name"
+        }
+      ],
+      staticClass: "form-control mb-4",
+      attrs: { type: "text", id: "name" },
+      domProps: { value: _vm.name },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.name = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.email,
+          expression: "email"
+        }
+      ],
+      staticClass: "form-control mb-4",
+      attrs: { type: "email", id: "email" },
+      domProps: { value: _vm.email },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.email = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-info btn-block my-4",
+        attrs: { type: "submit" },
+        on: { click: _vm.save }
+      },
+      [_vm._v("Mettre à jour")]
+    ),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass: "btn btn-primary my-4",
+        attrs: { href: "/password/reset", type: "button" }
+      },
+      [_vm._v("Modifier mon mot de passe")]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -20488,6 +20607,8 @@ module.exports = g;
 var map = {
 	"./Account": "./resources/js/Pages/Account.vue",
 	"./Account.vue": "./resources/js/Pages/Account.vue",
+	"./AccountComment": "./resources/js/Pages/AccountComment.vue",
+	"./AccountComment.vue": "./resources/js/Pages/AccountComment.vue",
 	"./AccountInformation": "./resources/js/Pages/AccountInformation.vue",
 	"./AccountInformation.vue": "./resources/js/Pages/AccountInformation.vue",
 	"./Articles": "./resources/js/Pages/Articles.vue",
@@ -20592,6 +20713,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_template_id_1b1b0414___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/AccountComment.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/AccountComment.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/Pages/AccountComment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
