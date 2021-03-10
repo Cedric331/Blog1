@@ -26,6 +26,7 @@
     "dependencies": {
         "@inertiajs/inertia": "^0.8.5",
         "@inertiajs/inertia-vue": "^0.5.5",
-        "@inertiajs/progress": "^0.2.4"
+        "@inertiajs/progress": "^0.2.4",
+        "vuejs-dialog": "^1.4.2"
     }
 }
