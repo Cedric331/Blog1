@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Commentaire;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,14 @@ class AccountController extends Controller
 
     public function index()
     {
+       $commentaires = Commentaire::with('article:id,title,slug')
+                     ->where('user_id', Auth::user()->id)
+                     ->orderBy('created_at','DESC')
+                     ->get();
+                     
        return Inertia::render('Account',[
-          'user' => Auth::user()
+          'user' => Auth::user(),
+          'comments' => $commentaires
        ]);
     }
 

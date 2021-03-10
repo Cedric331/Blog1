@@ -37,8 +37,7 @@
           <div class="tab-pane fade" id="panel101" role="tabpanel">
 
             <div class="view rounded z-depth-1-half mx-4">
-              <img src="https://mdbootstrap.com/img/Photos/Others/Intros/intro1a.jpg" alt="Display of a full page intro page with call to action buttons"
-                class="img-fluid">
+               <comment :comments="comments"></comment>
             </div>
 
           </div>
@@ -64,10 +63,12 @@
 
 <script>
 import information from './AccountInformation'
+import comment from './AccountComment'
 export default {
-  props: ['user'],
+  props: ['user', 'comments'],
    components:{
-      information
+      information,
+      comment
    }
 }
 </script>
