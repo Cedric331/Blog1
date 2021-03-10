@@ -18,7 +18,7 @@ const app = new Vue({
 InertiaProgress.init();
 Vue.use(plugin);
 Vue.use(VuejsDialog);
-
+ 
 const el = document.getElementById('app')
 
 new Vue({
