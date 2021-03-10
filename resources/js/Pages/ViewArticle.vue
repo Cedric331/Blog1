@@ -30,8 +30,8 @@
             <section class="text-center text-lg-left dark-grey-text">
 
                 <div class="text-center font-weight-bold mb-5">
-                   <span>({{commentaires.length}}) </span>
-                   Commentaires - <like class="d-inline" :article="article" :user="user"></like>
+                   Commentaires<span>({{commentaires.length}}) </span><like v-if="user" class="d-inline" :article="article" :user="user"></like>
+                   <span v-else>- J'aime({{article.likes.length}})</span>
                </div>
                      
 
@@ -57,7 +57,8 @@
                                     spellcheck="false" data-gramm="false" v-model="commentEditVisible"
                                     style="line-height: 21px;"></textarea>
                                 <div class="d-flex justify-content-end">
-                                    <button class="btn btn-primary mt-3" @click.prevent="editComment">Envoyer</button>
+                                    <button class="btn btn-danger btn-sm mt-3 mr-3" @click="formEditComment(commentaire)">Annuler</button>
+                                    <button class="btn btn-primary btn-sm mt-3" @click.prevent="editComment">Modifier</button>
                                 </div>
                             </div>
 

@@ -3958,6 +3958,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4107,6 +4108,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LikeArticle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LikeArticle */ "./resources/js/Pages/LikeArticle.vue");
+//
 //
 //
 //
@@ -7300,6 +7302,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("em", [_vm._v("-")]),
+    _vm._v(" "),
     _vm.show
       ? _c(
           "button",
@@ -7317,7 +7321,7 @@ var render = function() {
           },
           [
             _vm._v(
-              "\n      Je n'aime plus (" + _vm._s(_vm.likes.length) + ")\n   "
+              "\n     Je n'aime plus (" + _vm._s(_vm.likes.length) + ")\n   "
             )
           ]
         )
@@ -7576,14 +7580,18 @@ var render = function() {
             "div",
             { staticClass: "text-center font-weight-bold mb-5" },
             [
+              _vm._v("\n               Commentaires"),
               _c("span", [
                 _vm._v("(" + _vm._s(_vm.commentaires.length) + ") ")
               ]),
-              _vm._v("\n               Commentaires - "),
-              _c("like", {
-                staticClass: "d-inline",
-                attrs: { article: _vm.article, user: _vm.user }
-              })
+              _vm.user
+                ? _c("like", {
+                    staticClass: "d-inline",
+                    attrs: { article: _vm.article, user: _vm.user }
+                  })
+                : _c("span", [
+                    _vm._v("- J'aime(" + _vm._s(_vm.article.likes.length) + ")")
+                  ])
             ],
             1
           ),
@@ -7714,7 +7722,24 @@ var render = function() {
                                       _c(
                                         "button",
                                         {
-                                          staticClass: "btn btn-primary mt-3",
+                                          staticClass:
+                                            "btn btn-danger btn-sm mt-3 mr-3",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.formEditComment(
+                                                commentaire
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Annuler")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "btn btn-primary btn-sm mt-3",
                                           on: {
                                             click: function($event) {
                                               $event.preventDefault()
@@ -7722,7 +7747,7 @@ var render = function() {
                                             }
                                           }
                                         },
-                                        [_vm._v("Envoyer")]
+                                        [_vm._v("Modifier")]
                                       )
                                     ]
                                   )

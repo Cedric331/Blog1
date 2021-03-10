@@ -1,10 +1,11 @@
 <template>
    <div>
+      <em>-</em>
       <button v-if="show" class="btn btn-info rounded btn-sm" @click="like">
          J'aime ({{ likes.length }})
       </button>
       <button v-else class="btn btn-danger rounded btn-sm" @click="dislike">
-         Je n'aime plus ({{ likes.length }})
+        Je n'aime plus ({{ likes.length }})
       </button>
    </div>
 </template>
