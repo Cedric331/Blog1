@@ -34,6 +34,10 @@ Route::post('/dislike/article', 'LikeController@delete')->name('like-delete')->m
 Route::get('/photo', 'PhotoController@index')->name('photo-index');
 Route::post('/photo/store', 'PhotoController@store')->name('photo-store');
 
+Route::group(['middleware' => 'auth'], function () {
+   Route::get('/account', 'AccountController@index')->name('account-index');
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

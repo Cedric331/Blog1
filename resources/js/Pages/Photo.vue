@@ -13,7 +13,7 @@
                         <div class="custom-file">
                             <div class="btn btn-primary btn-sm float-left">
                                 <span>Choisir un fichier</span>
-                                <input type="file" name="filename" id="inputFileUpload" v-on:change="onFileChange">
+                                <input type="file" name="filename" id="inputFileUpload" v-on:change="onFileChange" required>
                             </div>
                         </div>
                         <div class="input-group-append">
@@ -30,7 +30,7 @@
 
       <div v-for="photo in allPhoto" :key="photo.id" class=" col-lg-4 col-md-6 mb-4">
         <div class="z-depth-1 rounded mb-2">
-           <a data-toggle="modal" @click="size(photo)" data-target="#modalYT">
+           <a type="button" data-toggle="modal" @click="size(photo)" data-target="#modalYT">
             <img :src="'/storage/photos/'+photo.photo"
               class="img-fluid rounded-bottom imageSize" :alt="photo.title">
               </a>
@@ -42,7 +42,6 @@
             </h4>
       </div>
 
-      
     </div>
   </section>
 
@@ -53,7 +52,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-body mb-0 p-0">
-        <div>
+        <div class="m-auto">
          <a data-dismiss="modal">
           <img :src="'/storage/photos/'+modalPhoto"  
               class="img-fluid rounded-bottom">
