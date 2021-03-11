@@ -6,19 +6,18 @@ import { InertiaProgress } from '@inertiajs/progress'
 import VuejsDialog from 'vuejs-dialog';
 import VuejsDialogMixin from 'vuejs-dialog/dist/vuejs-dialog-mixin.min.js';
 import 'vuejs-dialog/dist/vuejs-dialog.min.css';
-
+import Notifications from 'vue-notification'
 
 window.Vue = require('vue');
 window.axios = require('axios');
 
-const app = new Vue({
-   el: '#app',
-});
+
 
 InertiaProgress.init();
 Vue.use(plugin);
 Vue.use(VuejsDialog);
- 
+Vue.use(Notifications);
+
 const el = document.getElementById('app')
 
 new Vue({

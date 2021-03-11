@@ -6,7 +6,7 @@
     <h3 class="font-weight-bold text-center dark-grey-text pb-2">Historique de vos commentaires</h3>
     <hr class="w-header my-4">
     
-    <div class="row">
+    <div v-if="comments.length>0" class="row">
       <div class="col-lg-8 mx-auto">
         <ol class="timeline">
 
@@ -20,6 +20,10 @@
 
         </ol>
       </div>
+    </div>
+
+    <div v-else>
+       <h4>Aucun commentaire</h4>
     </div>
     
   </section>

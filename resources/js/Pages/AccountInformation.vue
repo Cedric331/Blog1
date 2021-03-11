@@ -1,9 +1,9 @@
 <template>
 <div class="border border-light p-5">
-
+<notifications class="mt-5" group="success" position="right top" />
     <p class="h4 mb-4 text-center">Mes Informations</p>
 
-                <div v-if="errors" class="alert alert-danger">
+            <div v-if="errors" class="alert alert-danger">
                 <div v-for="err in errors" :key="err.message">
                     <p v-for="error in err" :key="error" class="text-sm">
                         {{ error }}
@@ -32,10 +32,20 @@ export default {
            name: this.name,
            email: this.email
         }).then(res => {
-            this.email = res.data.user.email
-            this.name = res.data.user.name
+            this.$notify({
+               group: 'success',
+               type: 'success',
+               title: 'Modification du compte',
+               text: 'Vos informations sont à jour!'
+            });
         }).catch(err => {
            this.errors = err.response.data.errors
+            this.$notify({
+               group: 'success',
+               type: 'warn',
+               title: 'Modification du compte',
+               text: 'Oups désolé il y eu une erreur!'
+            });
         })
      }
   },

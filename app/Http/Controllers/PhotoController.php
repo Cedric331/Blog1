@@ -17,6 +17,11 @@ class PhotoController extends Controller
 
    public function store(Request $request)
    {
+      $request->validate([
+         'title' => ['required', 'string', 'max:20'],
+         'file' => ['required', 'image', 'max:2600'],
+      ]);
+
       $upload_path = public_path('storage/photos');
       $file_name = $request->file->getClientOriginalName();
       $request->file->move($upload_path, $file_name);

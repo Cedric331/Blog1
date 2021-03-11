@@ -1,8 +1,15 @@
 <template>
 <div class="container mt-5">
-
+<notifications class="mt-5" group="success" position="right top" />
          <div class="text-center my-3">
             <h4>Ajouter une photo</h4><br>
+            <div v-if="errors" class="alert alert-danger">
+                <div v-for="err in errors" :key="err.message">
+                    <p v-for="error in err" :key="error" class="text-sm">
+                        {{ error }}
+                    </p>
+                </div>
+            </div>
             <div style="max-width: 500px; margin: 0 auto;">
                 <form @submit="submitForm" enctype="multipart/form-data">
                      <div class="form-group">
@@ -74,7 +81,8 @@ export default {
                 file: '',
                 titre: '',
                 allPhoto: this.photos,
-                modalPhoto: ''
+                modalPhoto: '',
+                errors: null
             };
         },
   methods: {
@@ -86,6 +94,7 @@ export default {
             },
             submitForm(e) {
                 e.preventDefault();
+                this.errors = null
                 const config = {
                     headers: {
                         'content-type': 'multipart/form-data',
@@ -99,12 +108,24 @@ export default {
 
                 axios.post('/photo/store', formData, config)
                     .then(res => {
+                        this.$notify({
+                           group: 'success',
+                           type: 'success',
+                           title: 'Ajout Photo',
+                           text: 'Votre photo est en ligne!'
+                        });
                        this.allPhoto = res.data
                        this.titre = ''
                        e.target.reset();
                     })
                     .catch(err => {
-              
+                     this.errors = err.response.data.errors
+                        this.$notify({
+                           group: 'success',
+                           type: 'warn',
+                           title: 'Échec du téléchargement',
+                           text: 'Oups désolé il y eu une erreur!'
+                        });
                     });
             }
   },

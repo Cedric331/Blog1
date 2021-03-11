@@ -2,7 +2,7 @@
 <div>
 
    <headerHome></headerHome>
-   
+   <div v-if="article">
    <h1 class="mt-5 text-center">Article du moment</h1>
       <hr class="my-3">
      <div class="container mt-5">
@@ -29,7 +29,7 @@
                </p>
               </section>
       </div>
-
+   </div>
 
 </div>
 <!-- <img :src="'storage/images/home.jpg'">  -->

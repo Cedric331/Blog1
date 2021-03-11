@@ -31,7 +31,7 @@ class AccountController extends Controller
     public function update(Request $request)
     {
        $request->validate([
-         'name' => ['required', 'string', 'max:255'],
+         'name' => ['required', 'string', 'max:255', 'alpha_dash'],
        ]);
 
        if ($request->email != Auth::user()->email) {
