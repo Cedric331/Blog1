@@ -47,4 +47,11 @@ class AccountController extends Controller
 
        return response()->json($user, 200);
     }
+
+    public function delete(User $user)
+    {
+       $user->delete();
+
+       return response()->json(null, 200);
+    }
 }

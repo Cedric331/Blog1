@@ -3857,24 +3857,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    deleteUser: function deleteUser() {
+      axios["delete"]('/account/delete/' + this.user.id).then(function (res) {
+        if (res.status == 200) {
+          window.location = '/';
+        }
+      })["catch"](function (err) {});
+    }
+  },
   props: ['user', 'comments'],
   components: {
     information: _AccountInformation__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -7253,124 +7247,104 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container my-5 px-5 pt-5 pb-1 z-depth-1" }, [
-    _c("section", { staticClass: "text-center" }, [
-      _c("h2", { staticClass: "font-weight-bold mb-5" }, [
-        _vm._v("Mon Compte")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row mb-5" }, [
-        _c("div", { staticClass: "col-12" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "tab-content" }, [
-            _c(
-              "div",
-              {
-                staticClass: "tab-pane fade in show active",
-                attrs: { id: "panel100", role: "tabpanel" }
-              },
-              [
+  return _c(
+    "div",
+    { staticClass: "container-fluid my-3 px-5 pt-5 pb-1 z-depth-1" },
+    [
+      _c("section", { staticClass: "text-center" }, [
+        _c("h2", { staticClass: "font-weight-bold mb-5" }, [
+          _vm._v("Mon Compte")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mb-5" }, [
+          _c("div", { staticClass: "col-12" }, [
+            _c("ul", { staticClass: "nav md-pills nav-justified mb-4 mt-2" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c("li", { staticClass: "nav-item" }, [
                 _c(
-                  "div",
-                  { staticClass: "view rounded z-depth-1-half mx-4" },
-                  [_c("information", { attrs: { user: _vm.user } })],
-                  1
+                  "a",
+                  {
+                    staticClass: "nav-link mt-2 btn btn-primary rounded",
+                    attrs: { type: "button" },
+                    on: { click: _vm.deleteUser }
+                  },
+                  [_vm._v("Supprimer mon compte")]
                 )
-              ]
-            ),
+              ])
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "tab-pane fade",
-                attrs: { id: "panel101", role: "tabpanel" }
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "view rounded z-depth-1-half mx-4" },
-                  [_c("comment", { attrs: { comments: _vm.comments } })],
-                  1
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "tab-content" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "tab-pane fade in show active",
+                  attrs: { id: "panel100", role: "tabpanel" }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "view rounded z-depth-1-half mx-4" },
+                    [_c("information", { attrs: { user: _vm.user } })],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "tab-pane fade",
+                  attrs: { id: "panel101", role: "tabpanel" }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "view rounded z-depth-1-half mx-4" },
+                    [_c("comment", { attrs: { comments: _vm.comments } })],
+                    1
+                  )
+                ]
+              )
+            ])
           ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "nav md-pills nav-justified pills-rounded mb-4 mt-2" },
-      [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link mt-2 btn btn-primary",
-              attrs: { "data-toggle": "tab", href: "#panel100", role: "tab" }
-            },
-            [_vm._v("Mes Informations")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link mt-2 btn btn-primary",
-              attrs: { "data-toggle": "tab", href: "#panel101", role: "tab" }
-            },
-            [_vm._v("Mes commentaires")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link mt-2 btn btn-primary",
-              attrs: { "data-toggle": "tab", href: "#panel102", role: "tab" }
-            },
-            [_vm._v("Supprimer mon compte")]
-          )
-        ])
-      ]
-    )
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link mt-2 btn btn-primary rounded",
+          attrs: { "data-toggle": "tab", href: "#panel100", role: "tab" }
+        },
+        [_vm._v("Mes Informations")]
+      )
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane fade",
-        attrs: { id: "panel102", role: "tabpanel" }
-      },
-      [
-        _c("div", { staticClass: "view rounded z-depth-1-half mx-4" }, [
-          _c("img", {
-            staticClass: "img-fluid",
-            attrs: {
-              src:
-                "https://mdbootstrap.com/img/Photos/Others/Intros/intro4a.jpg",
-              alt:
-                "Display of a full page intro page with call to action buttons"
-            }
-          })
-        ])
-      ]
-    )
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link mt-2 btn btn-primary rounded",
+          attrs: { "data-toggle": "tab", href: "#panel101", role: "tab" }
+        },
+        [_vm._v("Mes commentaires")]
+      )
+    ])
   }
 ]
 render._withStripped = true
