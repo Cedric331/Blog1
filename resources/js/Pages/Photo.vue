@@ -121,14 +121,16 @@
         },
         methods: {
             deletePhoto(photo) {
-                axios.delete('/photo/delete/' + photo).then(res => {
+                axios.delete('/photo/' + photo).then(res => {
                     this.allPhoto = res.data
+                    console.log(res.data)
                     this.$notify({
                         group: 'success',
                         type: 'success',
                         title: 'Photo supprimée',
                         text: 'Votre photo est bien supprimée!'
                     });
+                    window.location = document.location.href
                 }).catch(err => {
                     this.$notify({
                         group: 'success',
@@ -158,7 +160,7 @@
                 formData.append('file', this.file);
                 formData.append('title', this.titre);
 
-                axios.post('/photo/store', formData, config)
+                axios.post('/photo', formData, config)
                     .then(res => {
                         this.$notify({
                             group: 'success',

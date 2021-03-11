@@ -4354,8 +4354,9 @@ __webpack_require__.r(__webpack_exports__);
     deletePhoto: function deletePhoto(photo) {
       var _this = this;
 
-      axios["delete"]('/photo/delete/' + photo).then(function (res) {
+      axios["delete"]('/photo/' + photo).then(function (res) {
         _this.allPhoto = res.data;
+        console.log(res.data);
 
         _this.$notify({
           group: 'success',
@@ -4363,6 +4364,8 @@ __webpack_require__.r(__webpack_exports__);
           title: 'Photo supprimée',
           text: 'Votre photo est bien supprimée!'
         });
+
+        window.location = document.location.href;
       })["catch"](function (err) {
         _this.$notify({
           group: 'success',
@@ -4392,7 +4395,7 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append('file', this.file);
       formData.append('title', this.titre);
-      axios.post('/photo/store', formData, config).then(function (res) {
+      axios.post('/photo', formData, config).then(function (res) {
         _this2.$notify({
           group: 'success',
           type: 'success',

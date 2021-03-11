@@ -12,7 +12,7 @@ class PhotoController extends Controller
    public function index()
    {
       return Inertia::render('Photo.vue',[
-         'photos' => Photo::paginate(1)
+         'photos' => Photo::paginate(9)
       ]);
    }
 
@@ -32,7 +32,7 @@ class PhotoController extends Controller
       $photo->photo = $request->file->getClientOriginalName();
       $photo->save();
 
-      $photos =  Photo::all();
+      $photos =  Photo::paginate(9);
       return response()->json($photos, 200);
    }
 
@@ -41,8 +41,8 @@ class PhotoController extends Controller
       Storage::disk('public')->delete('photos/'.$photo->photo);
 
       $photo->delete();
-
-      $photos =  Photo::all();
+      url("/photo");
+      $photos =  Photo::paginate(9);
       return response()->json($photos, 200);
    }
 }
