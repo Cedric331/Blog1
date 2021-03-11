@@ -39,7 +39,7 @@
                      <a class="nav-link" href="{{ route('article-index') }}">Articles</a>
                  </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('photo-index') }}">Photos</a>
+                        <a class="nav-link" href="{{ route('photo-index') }}">Galerie Photo</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"

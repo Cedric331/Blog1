@@ -4306,6 +4306,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4317,6 +4319,27 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    deletePhoto: function deletePhoto(photo) {
+      var _this = this;
+
+      axios["delete"]('/photo/delete/' + photo).then(function (res) {
+        _this.allPhoto = res.data;
+
+        _this.$notify({
+          group: 'success',
+          type: 'success',
+          title: 'Photo supprimée',
+          text: 'Votre photo est bien supprimée!'
+        });
+      })["catch"](function (err) {
+        _this.$notify({
+          group: 'success',
+          type: 'warn',
+          title: 'Échec',
+          text: 'Oups il y a un problème!'
+        });
+      });
+    },
     size: function size(photo) {
       this.modalPhoto = photo.photo;
     },
@@ -4324,7 +4347,7 @@ __webpack_require__.r(__webpack_exports__);
       this.file = e.target.files[0];
     },
     submitForm: function submitForm(e) {
-      var _this = this;
+      var _this2 = this;
 
       e.preventDefault();
       this.errors = null;
@@ -4338,20 +4361,20 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('file', this.file);
       formData.append('title', this.titre);
       axios.post('/photo/store', formData, config).then(function (res) {
-        _this.$notify({
+        _this2.$notify({
           group: 'success',
           type: 'success',
           title: 'Ajout Photo',
           text: 'Votre photo est en ligne!'
         });
 
-        _this.allPhoto = res.data;
-        _this.titre = '';
+        _this2.allPhoto = res.data;
+        _this2.titre = '';
         e.target.reset();
       })["catch"](function (err) {
-        _this.errors = err.response.data.errors;
+        _this2.errors = err.response.data.errors;
 
-        _this.$notify({
+        _this2.$notify({
           group: 'success',
           type: 'warn',
           title: 'Échec du téléchargement',
@@ -8055,6 +8078,12 @@ var render = function() {
     "div",
     { staticClass: "container mt-5" },
     [
+      _c("p", { staticClass: "text-center lead" }, [
+        _vm._v(
+          "Voici une fonction qui permet d'ajouter et de supprimer des photos, vous pouvez tester!"
+        )
+      ]),
+      _vm._v(" "),
       _c("notifications", {
         staticClass: "mt-5",
         attrs: { group: "success", position: "right top" }
@@ -8203,7 +8232,20 @@ var render = function() {
                   _c("strong", { staticClass: "text-primary" }, [
                     _vm._v(_vm._s(photo.title))
                   ])
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    on: {
+                      click: function($event) {
+                        return _vm.deletePhoto(photo.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Supprimer")]
+                )
               ]
             )
           }),

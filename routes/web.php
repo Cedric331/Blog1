@@ -33,6 +33,7 @@ Route::post('/dislike/article', 'LikeController@delete')->name('like-delete')->m
 
 Route::get('/photo', 'PhotoController@index')->name('photo-index');
 Route::post('/photo/store', 'PhotoController@store')->name('photo-store');
+Route::delete('/photo/delete/{photo}', 'PhotoController@delete')->name('photo-delete');
 
 Route::group(['middleware' => 'auth'], function () {
    Route::get('/account', 'AccountController@index')->name('account-index');

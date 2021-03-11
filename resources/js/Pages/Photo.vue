@@ -1,5 +1,6 @@
 <template>
 <div class="container mt-5">
+   <p class="text-center lead">Voici une fonction qui permet d'ajouter et de supprimer des photos, vous pouvez tester!</p>
 <notifications class="mt-5" group="success" position="right top" />
          <div class="text-center my-3">
             <h4>Ajouter une photo</h4><br>
@@ -47,6 +48,7 @@
             <h4 class="card-title font-weight-bold">
               <strong class="text-primary">{{photo.title}}</strong>
             </h4>
+            <button class="btn btn-primary" @click="deletePhoto(photo.id)">Supprimer</button>
       </div>
 
     </div>
@@ -86,6 +88,25 @@ export default {
             };
         },
   methods: {
+     deletePhoto(photo){
+        axios.delete('/photo/delete/'+photo
+        ).then(res => {
+            this.allPhoto = res.data
+            this.$notify({
+               group: 'success',
+               type: 'success',
+               title: 'Photo supprimée',
+               text: 'Votre photo est bien supprimée!'
+            });
+        }).catch(err => {
+            this.$notify({
+               group: 'success',
+               type: 'warn',
+               title: 'Échec',
+               text: 'Oups il y a un problème!'
+            });
+        })
+     },
      size(photo){
         this.modalPhoto = photo.photo
      },

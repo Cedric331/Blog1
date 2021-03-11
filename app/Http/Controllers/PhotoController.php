@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Photo;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
    public function index()
    {
       return Inertia::render('Photo.vue',[
-         'photos' => Photo::all()
+         'photos' => Photo::paginate(1)
       ]);
    }
 
@@ -30,6 +31,16 @@ class PhotoController extends Controller
       $photo->title = $request->title;
       $photo->photo = $request->file->getClientOriginalName();
       $photo->save();
+
+      $photos =  Photo::all();
+      return response()->json($photos, 200);
+   }
+
+   public function delete(Photo $photo)
+   {
+      Storage::disk('public')->delete('photos/'.$photo->photo);
+
+      $photo->delete();
 
       $photos =  Photo::all();
       return response()->json($photos, 200);
