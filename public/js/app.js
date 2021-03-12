@@ -3865,6 +3865,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     deleteUser: function deleteUser() {
+      var _this = this;
+
       var message = "Voulez-vous supprimer votre compte?";
       var options = {
         html: false,
@@ -3874,14 +3876,11 @@ __webpack_require__.r(__webpack_exports__);
         cancelText: 'Annuler',
         animation: 'zoom',
         type: 'basic',
-        verification: 'continue',
-        verificationHelp: 'Type "[+:verification]" below to confirm',
-        clicksCount: 3,
         backdropClose: true,
         customClass: ''
       };
-      this.$dialog.confirm(message, options).then(function () {
-        axios["delete"]('/account/delete/' + this.user.id).then(function (res) {
+      this.$dialog.confirm(message, options).then(function (dialog) {
+        axios["delete"]('/account/delete/' + _this.user.id).then(function (res) {
           if (res.status == 200) {
             window.location = '/';
           }

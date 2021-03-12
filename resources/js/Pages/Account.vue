@@ -64,20 +64,17 @@
                     okText: 'Oui',
                     cancelText: 'Annuler',
                     animation: 'zoom', 
-                    type: 'basic', 
-                    verification: 'continue', 
-                    verificationHelp: 'Type "[+:verification]" below to confirm', 
-                    clicksCount: 3,
+                    type: 'basic',  
                     backdropClose: true,
                     customClass: '' 
                 };
 
                 this.$dialog.confirm(message, options)
-                    .then(function () {
-                     axios.delete('/account/delete/' + this.user.id
-                     ).then(res => {
-                     if (res.status == 200) {
-                        window.location = '/'
+                    .then(dialog => {
+                        axios.delete('/account/delete/' + this.user.id
+                        ).then(res => {
+                        if (res.status == 200) {
+                           window.location = '/'
                         }
                      }).catch(err => {
 

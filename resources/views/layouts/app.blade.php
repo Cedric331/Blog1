@@ -104,8 +104,8 @@
             <div class="row">
                 <div class="col-8 d-flex justify-content-start">
                     <!-- Copyright -->
-                    <div class="footer-copyright text-center text-white bg-transparent">© 2019 Copyright:
-                        <a class="text-white" href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+                    <div class="footer-copyright text-center text-white bg-transparent">© {{ date('Y') }} Copyright:
+                        <a class="text-white" href="https://mdbootstrap.com/education/bootstrap/"> Blog Photographe</a>
                     </div>
                     <!-- Copyright -->
                 </div>
