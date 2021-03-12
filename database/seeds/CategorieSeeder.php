@@ -12,7 +12,7 @@ class CategorieSeeder extends Seeder
      */
     public function run()
     {
-       $list = ['Animeaux', 'Shooting','Paysage','Culinaire','Ville'];
+       $list = ['Animaux','Paysage','Ville'];
 
        foreach($list as $value) {
          $category =  new Categorie;

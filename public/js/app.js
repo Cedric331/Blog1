@@ -4065,6 +4065,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['articles']
 });
@@ -7741,90 +7747,92 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mt-5" }, [
-    _c("section", { staticClass: "dark-grey-text text-center" }, [
-      _c("h2", { staticClass: "font-weight-bold mb-4 pb-2" }, [
+    _c("section", {}, [
+      _c("h3", { staticClass: "text-center font-weight-bold mb-5" }, [
         _vm._v("Articles")
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "text-center mx-auto w-responsive mb-5" }, [
-        _vm._v(
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n            Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam\n            eum porro a pariatur veniam."
-        )
-      ]),
+      _c("hr"),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "row" },
+        { staticClass: "row my-5" },
         _vm._l(_vm.articles, function(article) {
           return _c(
             "div",
-            {
-              key: article.id,
-              staticClass: "my-2 col-lg-4 col-md-6 mb-4 shadow-lg p-3"
-            },
+            { key: article.id, staticClass: "col-lg-4 col-md-12 mb-lg-0 mb-4" },
             [
-              _c(
-                "div",
-                { staticClass: "view overlay rounded z-depth-2 mb-4" },
-                [
-                  _c("img", {
-                    staticClass: "img-fluid",
-                    attrs: {
-                      src: "/storage/images/" + article.image,
-                      alt: article.title
-                    }
-                  }),
+              _c("div", { staticClass: "card hoverable" }, [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  attrs: {
+                    src: "/storage/images/" + article.image,
+                    alt: article.title
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c("h4", { staticClass: "black-text" }, [
+                    _vm._v(_vm._s(article.title))
+                  ]),
                   _vm._v(" "),
-                  _vm._m(0, true)
-                ]
-              ),
-              _vm._v(" "),
-              _c("h4", { staticClass: "font-weight-bold mb-3" }, [
-                _c("strong", [_vm._v(_vm._s(article.title))])
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "d-inline font-weight-bold" }, [
-                _vm._v("par Natalie SMITH, " + _vm._s(article.created_at))
-              ]),
-              _vm._v(" "),
-              _c(
-                "p",
-                { staticClass: "mt-2" },
-                [
-                  _vm._v("\n                       Tags: "),
-                  _vm._l(article.tag, function(tag, index) {
-                    return _c(
-                      "small",
-                      { key: tag.id, staticClass: "d-inline" },
-                      [
-                        _vm._v("#" + _vm._s(tag.name)),
-                        index + 1 != article.tag.length
-                          ? _c("em", [_vm._v(" - ")])
-                          : _vm._e()
-                      ]
+                  _c(
+                    "p",
+                    {
+                      staticClass: "card-title text-muted font-small mt-3 mb-2"
+                    },
+                    [
+                      _vm._v(
+                        "Lorem ipsum dolor sit amet consectetur\n                            adipisicing elit. Eius iusto excepturi voluptates ut reiciendis nulla nam, provident\n                            vero! Blanditiis, labore."
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "mt-2" },
+                    [
+                      _vm._v("\n                            Tags: "),
+                      _vm._l(article.tag, function(tag, index) {
+                        return _c(
+                          "small",
+                          { key: tag.id, staticClass: "d-inline" },
+                          [
+                            _vm._v("#" + _vm._s(tag.name)),
+                            index + 1 != article.tag.length
+                              ? _c("em", [
+                                  _vm._v(" -\n                                ")
+                                ])
+                              : _vm._e()
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "font-weight-bold" }, [
+                    _vm._v(
+                      "J'aime(" +
+                        _vm._s(article.likes.length) +
+                        ") -\n                            Commentaire(" +
+                        _vm._s(article.commentaires.length) +
+                        ")"
                     )
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "mb-4 btn btn-info btn-rounded btn-md",
-                  attrs: { href: "/articles/" + article.slug }
-                },
-                [_vm._v("Lire l'article")]
-              ),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-weight-bold" }, [
-                _vm._v(
-                  "J'aime(" +
-                    _vm._s(article.likes.length) +
-                    ") - Commentaire(" +
-                    _vm._s(article.commentaires.length) +
-                    ")"
-                )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary btn-block p-0 mx-0",
+                      attrs: {
+                        type: "button",
+                        href: "/articles/" + article.slug
+                      }
+                    },
+                    [_vm._v("Lire l'article")]
+                  )
+                ])
               ])
             ]
           )
@@ -7834,14 +7842,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", [_c("div", { staticClass: "mask rgba-white-slight" })])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -2,6 +2,7 @@
 
 use App\Article;
 use App\Contenu;
+use App\ArticleTag;
 use Illuminate\Database\Seeder;
 
 class ArticleSeeder extends Seeder
@@ -17,8 +18,9 @@ class ArticleSeeder extends Seeder
         $article->title = "Des arbres blancs en hiver";
         $article->image = "arbreshiver.jpg";
         $article->slug = "arbres-blancs-hiver";
-        $article->categorie_id = 3;
-       $article->save();
+        $article->top = true;
+        $article->categorie_id = 2;
+        $article->save();
        
         $contenu = new Contenu;
         $contenu->title = "Définition du blanc";
@@ -33,5 +35,52 @@ class ArticleSeeder extends Seeder
         $contenu->image = "hiver.jpg";
         $contenu->article_id = $article->id;
         $contenu->save();
+
+        $tag = new ArticleTag;
+        $tag->article_id = $article->id;
+        $tag->tag_id = 1;
+        $tag->save();
+
+        $tag = new ArticleTag;
+        $tag->article_id = $article->id;
+        $tag->tag_id = 2;
+        $tag->save();
+
+        $tag = new ArticleTag;
+        $tag->article_id = $article->id;
+        $tag->tag_id = 3;
+        $tag->save();
+
+        $article = new Article;
+        $article->title = "La Ville";
+        $article->image = "ville.jpg";
+        $article->slug = "ville-nuit";
+        $article->categorie_id = 3;
+        $article->save();
+       
+        $contenu = new Contenu;
+        $contenu->title = "Lorem, ipsum dolor";
+        $contenu->content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut laudantium ipsum, delectus omnis numquam nam exercitationem deleniti maiores consectetur fugit officiis eum impedit? Enim quo porro quos reprehenderit eius vero fuga aut, corrupti, quaerat aliquid atque incidunt delectus eaque quod quia, architecto nisi. Laudantium nihil itaque, aspernatur laborum autem placeat.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis cupiditate eaque voluptates, esse numquam saepe? Porro, odio voluptatem dolorem alias, eaque omnis a quidem libero, aliquid debitis nam? Laborum totam sed nobis! A fugiat assumenda provident ipsum tempora error nisi dolorum quod atque iusto commodi enim voluptatem aspernatur, quidem repellendus tempore illo pariatur laudantium rerum! Odit unde repellendus blanditiis tenetur!";
+        $contenu->article_id = $article->id;
+        $contenu->save();
+
+        $contenu = new Contenu;
+        $contenu->title = "Ville de Nuit";
+        $contenu->image = "ville1.jpg";
+        $contenu->content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut laudantium ipsum, delectus omnis numquam nam exercitationem deleniti maiores consectetur fugit officiis eum impedit? Enim quo porro quos reprehenderit eius vero fuga aut, corrupti, quaerat aliquid atque incidunt delectus eaque quod quia, architecto nisi. Laudantium nihil itaque, aspernatur laborum autem placeat.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis cupiditate eaque voluptates, esse numquam saepe? Porro, odio voluptatem dolorem alias, eaque omnis a quidem libero, aliquid debitis nam? Laborum totam sed nobis! A fugiat assumenda provident ipsum tempora error nisi dolorum quod atque iusto commodi enim voluptatem aspernatur, quidem repellendus tempore illo pariatur laudantium rerum! Odit unde repellendus blanditiis tenetur!";
+        $contenu->article_id = $article->id;
+        $contenu->save();
+
+        $tag = new ArticleTag;
+        $tag->article_id = $article->id;
+        $tag->tag_id = 4;
+        $tag->save();
+
+        $tag = new ArticleTag;
+        $tag->article_id = $article->id;
+        $tag->tag_id = 5;
+        $tag->save();
     }
 }
