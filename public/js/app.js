@@ -4071,6 +4071,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['articles']
 });
@@ -7753,6 +7756,12 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("hr"),
+      _vm._v(" "),
+      _vm.articles.length == 0
+        ? _c("div", { staticClass: "text-center" }, [
+            _c("h5", [_vm._v("Aucun article dans cette catégorie")])
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",

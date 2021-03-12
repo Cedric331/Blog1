@@ -5,6 +5,9 @@
 
             <h3 class="text-center font-weight-bold mb-5">Articles</h3>
             <hr>
+            <div v-if="articles.length == 0" class="text-center">
+               <h5>Aucun article dans cette catégorie</h5>
+            </div>
             <div class="row my-5">
                 <div v-for="article in articles" :key="article.id" class="col-lg-4 col-md-12 mb-lg-0 mb-4">
                     <div class="card hoverable">
