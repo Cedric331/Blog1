@@ -13,6 +13,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
         "inertiajs/inertia-laravel": "^0.4.0",
+        "laravel-at/laravel-image-sanitize": "^1.5",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
         "laravel/ui": "2.4",
