@@ -4334,12 +4334,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -8225,94 +8219,96 @@ var render = function() {
         _c("hr")
       ]),
       _vm._v(" "),
-      _c("nav", { attrs: { "aria-label": "pagination photo" } }, [
-        _c("ul", { staticClass: "pagination" }, [
-          _vm.allPhoto.current_page != 1
-            ? _c("li", { staticClass: "page-item" }, [
+      _vm.allPhoto.data.length > 9
+        ? _c("nav", { attrs: { "aria-label": "pagination photo" } }, [
+            _c("ul", { staticClass: "pagination" }, [
+              _vm.allPhoto.current_page != 1
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: {
+                          href: _vm.allPhoto.path,
+                          tabindex: "-1",
+                          "aria-disabled": "true"
+                        }
+                      },
+                      [_vm._v("Début")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.allPhoto.prev_page_url
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: {
+                          href: _vm.allPhoto.prev_page_url,
+                          tabindex: "-1",
+                          "aria-disabled": "true"
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.allPhoto.current_page - 1))]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("li", { staticClass: "page-item active" }, [
                 _c(
                   "a",
                   {
                     staticClass: "page-link",
                     attrs: {
-                      href: _vm.allPhoto.path,
-                      tabindex: "-1",
-                      "aria-disabled": "true"
+                      href:
+                        "http://127.0.0.1:8000/photo?page=" +
+                        _vm.allPhoto.current_page
                     }
                   },
-                  [_vm._v("Début")]
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.allPhoto.current_page) +
+                        "\n                "
+                    )
+                  ]
                 )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.allPhoto.prev_page_url
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: {
-                      href: _vm.allPhoto.prev_page_url,
-                      tabindex: "-1",
-                      "aria-disabled": "true"
-                    }
-                  },
-                  [_vm._v(_vm._s(_vm.allPhoto.current_page - 1))]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("li", { staticClass: "page-item active" }, [
-            _c(
-              "a",
-              {
-                staticClass: "page-link",
-                attrs: {
-                  href:
-                    "http://127.0.0.1:8000/photo?page=" +
-                    _vm.allPhoto.current_page
-                }
-              },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.allPhoto.current_page) +
-                    "\n                "
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _vm.allPhoto.next_page_url
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: _vm.allPhoto.next_page_url }
-                  },
-                  [_vm._v(_vm._s(_vm.allPhoto.current_page + 1))]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.allPhoto.current_page != _vm.allPhoto.last_page
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: {
-                      href: _vm.allPhoto.last_page_url,
-                      tabindex: "-1",
-                      "aria-disabled": "true"
-                    }
-                  },
-                  [_vm._v("Dernière\n                    page")]
-                )
-              ])
-            : _vm._e()
-        ])
-      ]),
+              ]),
+              _vm._v(" "),
+              _vm.allPhoto.next_page_url
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: _vm.allPhoto.next_page_url }
+                      },
+                      [_vm._v(_vm._s(_vm.allPhoto.current_page + 1))]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.allPhoto.current_page != _vm.allPhoto.last_page
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: {
+                          href: _vm.allPhoto.last_page_url,
+                          tabindex: "-1",
+                          "aria-disabled": "true"
+                        }
+                      },
+                      [_vm._v("Dernière\n                    page")]
+                    )
+                  ])
+                : _vm._e()
+            ])
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("section", [
         _c(

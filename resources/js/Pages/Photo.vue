@@ -36,33 +36,27 @@
             <hr>
         </div>
 
-        <nav aria-label="pagination photo">
+        <nav v-if="allPhoto.data.length > 9" aria-label="pagination photo">
             <ul class="pagination">
-
                 <li class="page-item" v-if="allPhoto.current_page != 1">
                     <a class="page-link" :href="allPhoto.path" tabindex="-1" aria-disabled="true">Début</a>
                 </li>
-
                 <li class="page-item" v-if="allPhoto.prev_page_url">
                     <a class="page-link" :href="allPhoto.prev_page_url" tabindex="-1"
                         aria-disabled="true">{{allPhoto.current_page-1}}</a>
                 </li>
-
                 <li class="page-item active">
                     <a class="page-link" :href="'http://127.0.0.1:8000/photo?page='+allPhoto.current_page">
                         {{allPhoto.current_page}}
                     </a>
                 </li>
-
                 <li v-if="allPhoto.next_page_url" class="page-item">
                     <a class="page-link" :href="allPhoto.next_page_url">{{allPhoto.current_page+1}}</a>
                 </li>
-
                 <li class="page-item" v-if="allPhoto.current_page != allPhoto.last_page">
                     <a class="page-link" :href="allPhoto.last_page_url" tabindex="-1" aria-disabled="true">Dernière
                         page</a>
                 </li>
-
             </ul>
         </nav>
 

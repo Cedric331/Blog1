@@ -24,12 +24,12 @@ class PhotoController extends Controller
       ]);
 
       $upload_path = public_path('storage/photos');
-      $file_name = $request->file->getClientOriginalName();
+      $file_name = time().$request->file->getClientOriginalName();
       $request->file->move($upload_path, $file_name);
 
       $photo = new Photo;
       $photo->title = $request->title;
-      $photo->photo = $request->file->getClientOriginalName();
+      $photo->photo = $file_name;
       $photo->save();
 
       $photos =  Photo::paginate(9);
