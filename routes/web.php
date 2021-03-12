@@ -28,6 +28,9 @@ Route::get('/photo', 'PhotoController@index')->name('photo-index');
 Route::post('/photo', 'PhotoController@store')->name('photo-store')->middleware('image-sanitize');
 Route::delete('/photo/{photo}', 'PhotoController@delete')->name('photo-delete');
 
+Route::get('/contact', 'ContactController@index')->name('contact-index');
+Route::post('/contact', 'ContactController@post')->name('contact-post');
+
 Route::group(['middleware' => 'auth'], function () {
    Route::post('/commentaire', 'CommentaireController@store')->name('commentaire-store');
    Route::patch('/commentaire/edit', 'CommentaireController@edit')->name('commentaire-edit');
