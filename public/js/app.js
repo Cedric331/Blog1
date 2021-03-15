@@ -4462,6 +4462,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4469,7 +4472,8 @@ __webpack_require__.r(__webpack_exports__);
       titre: '',
       allPhoto: this.photos,
       modalPhoto: '',
-      errors: null
+      errors: null,
+      loading: false
     };
   },
   methods: {
@@ -4507,6 +4511,7 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm(e) {
       var _this2 = this;
 
+      this.loading = true;
       e.preventDefault();
       this.errors = null;
       var config = {
@@ -4519,6 +4524,8 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('file', this.file);
       formData.append('title', this.titre);
       axios.post('/photo', formData, config).then(function (res) {
+        _this2.loading = false;
+
         _this2.$notify({
           group: 'success',
           type: 'success',
@@ -4530,6 +4537,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.titre = '';
         e.target.reset();
       })["catch"](function (err) {
+        _this2.loading = false;
         _this2.errors = err.response.data.errors;
 
         _this2.$notify({
@@ -43762,7 +43770,12 @@ var render = function() {
             "form",
             {
               attrs: { enctype: "multipart/form-data" },
-              on: { submit: _vm.submitForm }
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.submitForm($event)
+                }
+              }
             },
             [
               _c("div", { staticClass: "form-group" }, [
@@ -43821,7 +43834,29 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(0)
+                _c("div", { staticClass: "input-group-append" }, [
+                  _c("input", {
+                    staticClass: "btn btn-primary ml-2 btn-sm",
+                    attrs: { type: "submit", value: "Télécharger" }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.loading,
+                          expression: "loading"
+                        }
+                      ],
+                      staticClass: "spinner-border ml-2",
+                      attrs: { role: "status" }
+                    },
+                    [_c("span", { staticClass: "visually-hidden" })]
+                  )
+                ])
               ])
             ]
           )
@@ -44026,19 +44061,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-append" }, [
-      _c("input", {
-        staticClass: "btn btn-primary ml-2 btn-sm",
-        attrs: { type: "submit", value: "Télécharger" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

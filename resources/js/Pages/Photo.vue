@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div style="max-width: 500px; margin: 0 auto;">
-                <form @submit="submitForm" enctype="multipart/form-data">
+                <form @submit.prevent="submitForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="titre" class="form-label">Titre de la photo</label>
                         <input type="text" v-model="titre" class="form-control" id="titre"
@@ -29,6 +29,9 @@
                         </div>
                         <div class="input-group-append">
                             <input type="submit" class="btn btn-primary ml-2 btn-sm" value="Télécharger">
+                        <div v-show="loading" class="spinner-border ml-2" role="status">
+                           <span class="visually-hidden"></span>
+                        </div>
                         </div>
                     </div>
                 </form>
@@ -110,7 +113,8 @@
                 titre: '',
                 allPhoto: this.photos,
                 modalPhoto: '',
-                errors: null
+                errors: null,
+                loading: false
             };
         },
         methods: {
@@ -142,6 +146,7 @@
                 this.file = e.target.files[0];
             },
             submitForm(e) {
+               this.loading = true
                 e.preventDefault();
                 this.errors = null
                 const config = {
@@ -157,6 +162,7 @@
 
                 axios.post('/photo', formData, config)
                     .then(res => {
+                       this.loading = false
                         this.$notify({
                             group: 'success',
                             type: 'success',
@@ -168,6 +174,7 @@
                         e.target.reset();
                     })
                     .catch(err => {
+                       this.loading = false
                         this.errors = err.response.data.errors
                         this.$notify({
                             group: 'success',
