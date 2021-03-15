@@ -161,7 +161,8 @@
                }
             },
             editComment() {
-                axios.patch('/commentaire/edit', {
+                axios.post('/commentaire/edit', {
+                    _method: 'patch',
                     id: this.commentEditFormVisible,
                     commentaire: this.commentEditVisible,
                 }).then(res => {
@@ -194,7 +195,9 @@
                 this.$dialog
                     .confirm(message, options)
                     .then(dialog => {
-                        axios.delete('/commentaire/delete/' + id).then(res => {
+                        axios.post('/commentaire/delete/' + id,{
+                           _method: 'delete',
+                        }).then(res => {
                             this.errorsEdit = null
                             this.errors = null
                             this.commentaires = res.data

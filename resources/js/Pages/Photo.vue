@@ -115,9 +115,10 @@
         },
         methods: {
             deletePhoto(photo) {
-                axios.delete('/photo/' + photo).then(res => {
+                axios.post('/photo/' + photo,{
+                   _method: 'delete',
+                }).then(res => {
                     this.allPhoto = res.data
-                    console.log(res.data)
                     this.$notify({
                         group: 'success',
                         type: 'success',

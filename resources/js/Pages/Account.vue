@@ -71,8 +71,9 @@
 
                 this.$dialog.confirm(message, options)
                     .then(dialog => {
-                        axios.delete('/account/delete/' + this.user.id
-                        ).then(res => {
+                        axios.post('/account/delete/' + this.user.id,{
+                           _method: 'delete',
+                        }).then(res => {
                         if (res.status == 200) {
                            window.location = '/'
                         }

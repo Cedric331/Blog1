@@ -1,3 +1,4 @@
+require('./bootstrap');
 
 
 import { App, plugin } from '@inertiajs/inertia-vue'
@@ -9,8 +10,6 @@ import 'vuejs-dialog/dist/vuejs-dialog.min.css';
 import Notifications from 'vue-notification'
 
 window.Vue = require('vue');
-window.axios = require('axios');
-
 
 
 InertiaProgress.init();

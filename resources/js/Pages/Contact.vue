@@ -47,12 +47,13 @@
                                     <textarea v-model="message" class="form-control rounded" id="message" rows="3"
                                         placeholder="Votre message"></textarea>
                                 </div>
+
                                 <div class="text-center">
                                     <button type="button" @click="post" class="btn btn-primary btn-md">Envoyer</button>
                                 </div>
                             </div>
                         </div>
-
+            
                     </div>
                 </div>
             </div>
@@ -63,6 +64,7 @@
 
 
 <script>
+
     export default {
   methods: {
      post(){
